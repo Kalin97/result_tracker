@@ -1,0 +1,45 @@
+{
+	"news": 
+	[
+		{
+			"id": 1,
+			"title": "example title",
+			"publisher": "username",
+			"content": "content"
+		}
+	],
+	"user": 
+	[
+		{
+			"id": 1,
+			"name": "name",
+			"score": 1,
+			"Items": 
+			{
+				"jump":5
+			},
+			"friends": 
+			[
+				1
+			],
+			"updatedTimes": 4 
+		}
+	],
+	"administrator": 
+	[
+		{
+			"id": 1,
+			"administratorType": 1,
+			"email": "someemail",
+			"password": "32143hkjlhkfo1i"
+		}
+	],
+	"feedback": 
+	[
+		{
+			"id": 1,
+			"sender": 1,
+			"feedbackType": 1
+		}
+	]
+}
