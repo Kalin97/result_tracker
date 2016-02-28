@@ -3,22 +3,22 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name>05_SampleBackend</display-name>
+	<display-name>TrafficMadness</display-name>
 	<servlet>
 		<servlet-name>REST</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>
-				org.elsysbg.ip.todo.rest
+				org.trafficmadness.www.rest
 				com.fasterxml.jackson.jaxrs.json
 			</param-value>
         </init-param>
-        <init-param>
+		<init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>org.elsysbg.ip.todo.TodoListApplication</param-value>
+            <param-value>org.trafficmadness.www.injection.GuiceInitializeApplication</param-value>
         </init-param>
-        
+      
         <load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -28,7 +28,7 @@
 	</servlet-mapping>
 
 	<listener>
-	    <listener-class>org.elsysbg.ip.todo.TodoListServletContextListener</listener-class>
+	    <listener-class>org.trafficmadness.www.injection.PlayerRestServletListener</listener-class>
 	</listener>
 
 	<welcome-file-list>
