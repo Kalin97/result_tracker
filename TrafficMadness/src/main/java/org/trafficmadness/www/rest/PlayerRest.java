@@ -42,17 +42,15 @@ public class PlayerRest
 	}
 	
 	@POST
-	@Path("/{playerEmail}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public void postPlayerInfoByEmail(@PathParam("playerEmail") String playerEmail, PlayerInfo playerInfo)
+	public void postPlayerInfoByEmail(PlayerInfo playerInfo)
 	{
 		database.addData(playerInfo);
 	}
 	
 	@PUT
-	@Path("/{playerEmail}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public void updatePlayerInfoByEmail(@PathParam("playerEmail") String playerEmail, PlayerInfo playerInfo)
+	public void updatePlayerInfoByEmail(PlayerInfo playerInfo)
 	{
 		database.updateData(playerInfo);
 	}
