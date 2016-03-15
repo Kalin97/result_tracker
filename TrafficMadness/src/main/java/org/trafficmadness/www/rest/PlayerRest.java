@@ -18,19 +18,19 @@ import org.trafficmadness.www.user.entities.Player;
 @Path("/playerRest")
 public class PlayerRest 
 {
-	private final PlayersService playerService;
+	private final PlayersService playersService;
 	
 	@Inject
 	public PlayerRest(PlayersService database)
 	{
-		this.playerService = database;
+		this.playersService = database;
 	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<Player> getPlayerInfo()
 	{
-		return playerService.getData();
+		return playersService.getData();
 	}
 	
 	@GET
@@ -38,25 +38,25 @@ public class PlayerRest
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Player getPlayerInfoByEmail(@PathParam("playerEmail") String playerEmail)
 	{
-		return playerService.getDataByEmail(playerEmail);
+		return playersService.getDataByEmail(playerEmail);
 	}
 	
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public void postPlayerInfoByEmail(Player playerInfo)
+	public Player postPlayerInfoByEmail(Player playerInfo)
 	{
-		playerService.addData(playerInfo);
+		return playersService.addData(playerInfo);
 	}
 	
 	@PUT
 	@Path("/{playerId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public void updatePlayerInfoByEmail(@PathParam("playerId") long playerId, Player playerInfo)
+	public Player updatePlayerInfoByEmail(@PathParam("playerId") long playerId, Player playerInfo)
 	{
-		Player player = playerService.getData(playerId);
+		Player player = playersService.getData(playerId);
 		player.setItems(playerInfo.getItems());
 		player.setScore(playerInfo.getScore());
 		
-		playerService.updateData(player);
+		return playersService.updateData(player);
 	}
 }

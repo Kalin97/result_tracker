@@ -86,7 +86,7 @@ public class PlayersService
 		}
 	}
 	
-	public void addData(Player player)
+	public Player addData(Player player)
 	{
 		final EntityManager em = entityManagerService.createEntityManager();
 		try 
@@ -94,6 +94,8 @@ public class PlayersService
 			em.getTransaction().begin();
 			em.persist(player);
 			em.getTransaction().commit();
+		
+			return player;
 		} 
 		finally 
 		{
@@ -105,7 +107,7 @@ public class PlayersService
 		}
 	}
 	
-	public void updateData(Player player)
+	public Player updateData(Player player)
 	{		
 		final EntityManager em = entityManagerService.createEntityManager();
 		try 
@@ -113,6 +115,8 @@ public class PlayersService
 			em.getTransaction().begin();
 			em.merge(player);
 			em.getTransaction().commit();
+			
+			return player;
 		} 
 		finally 
 		{
