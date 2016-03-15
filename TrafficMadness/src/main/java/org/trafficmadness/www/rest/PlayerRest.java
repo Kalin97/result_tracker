@@ -12,46 +12,51 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.trafficmadness.www.database.Database;
-import org.trafficmadness.www.user.entities.PlayerInfo;
+import org.trafficmadness.www.database.PlayerService;
+import org.trafficmadness.www.user.entities.Player;
 
 @Path("/playerRest")
 public class PlayerRest 
 {
-	private final Database database;
+	private final PlayerService playerService;
 	
 	@Inject
-	public PlayerRest(Database database)
+	public PlayerRest(PlayerService database)
 	{
-		this.database = database;
+		this.playerService = database;
 	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<PlayerInfo> getPlayerInfo()
+	public List<Player> getPlayerInfo()
 	{
-		return database.getData();
+		return playerService.getData();
 	}
 	
 	@GET
 	@Path("/{playerEmail}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public PlayerInfo getPlayerInfoByEmail(@PathParam("playerEmail") String playerEmail)
+	public Player getPlayerInfoByEmail(@PathParam("playerEmail") String playerEmail)
 	{
-		return database.getDataByEmail(playerEmail);
+		return playerService.getDataByEmail(playerEmail);
 	}
 	
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public void postPlayerInfoByEmail(PlayerInfo playerInfo)
+	public void postPlayerInfoByEmail(Player playerInfo)
 	{
-		database.addData(playerInfo);
+		playerService.addData(playerInfo);
 	}
 	
 	@PUT
+	@Path("/{playerId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public void updatePlayerInfoByEmail(PlayerInfo playerInfo)
+	public void updatePlayerInfoByEmail(@PathParam("playerId") long playerId, Player playerInfo)
 	{
-		database.updateData(playerInfo);
+		Player player = playerService.getData(playerId);
+		player.setItems(playerInfo.getItems());
+		player.setScore(playerInfo.getScore());
+		
+		playerService.updateData(player);
 	}
 }

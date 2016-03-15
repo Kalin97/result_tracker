@@ -1,12 +1,44 @@
 package org.trafficmadness.www.user.entities;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Entity
+@Table(name="Item")
 public class Item 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ITEM_ID", nullable = false)
+	private long id;
+	@Column(nullable = false)
 	private String type;
+	@Column(nullable = false)
 	private int level;
+	@Column(name = "PLAYER_ID")
+	private long playerId;
+	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@JoinColumn(name = "PLAYER_ID", referencedColumnName = "PLAYER_ID")
+	private Player player;
+
+	public long getId()
+	{
+		return id;
+	}
+	
+	public void setId(long id)
+	{
+		this.id = id;
+	}
 	
 	public String getType()
 	{
@@ -26,5 +58,10 @@ public class Item
 	public void setLevel(int level)
 	{
 		this.level = level;
+	}
+
+	public Player getPlayer() 
+	{
+		return player;
 	}
 }

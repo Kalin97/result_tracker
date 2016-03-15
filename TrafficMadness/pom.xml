@@ -6,7 +6,6 @@
 	<version>0.1-SNAPSHOT</version>
 
 	<properties>
-		<db.path>.</db.path>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jersey.version>2.21</jersey.version>
 		<compileSource>1.7</compileSource>
@@ -14,6 +13,8 @@
 		<tomcat.version>7.0.64</tomcat.version>
 		<guice.version>4.0</guice.version>
 		<hk2.version>2.4.0-b31</hk2.version>
+		<openjpa.version>2.4.0</openjpa.version>
+		<postgresql.version>9.4.1208.jre7</postgresql.version>
 	</properties>
 
 	<packaging>war</packaging>
@@ -67,7 +68,17 @@
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+		<dependency>
+ 			<groupId>org.apache.openjpa</groupId>
+ 			<artifactId>openjpa</artifactId>
+ 			<version>${openjpa.version}</version>
+ 			<scope>compile</scope>
+ 		</dependency>	
+ 		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -80,7 +91,7 @@
 				<configuration>
 					<source>${compileSource}</source>
 					<target>${compileTarget}</target>
-					<encoding>UTF-8</encoding>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 
@@ -97,6 +108,9 @@
 					<downloadJavadocs>true</downloadJavadocs>
 					<useProjectReferences>true</useProjectReferences>
 					<wtpContextName>TrafficMadness</wtpContextName>
+					<additionalProjectFacets>
+						<jpt.jpa>2.0</jpt.jpa>
+					</additionalProjectFacets>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -118,7 +132,7 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.7</version>
 				<configuration>
-					<encoding>UTF-8</encoding>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -142,7 +156,6 @@
 						<fileset>
 							<directory>www-test</directory>
 						</fileset>
-
 						<fileset>
 							<directory>bin</directory>
 						</fileset>
@@ -196,8 +209,6 @@
 				</executions>
 			</plugin>
 
-
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -218,5 +229,30 @@
 			<url>http://download.java.net/maven/2/</url>
 		</pluginRepository>
 	</pluginRepositories>
+	<profiles>
+		<profile>
+			<!-- When built in OpenShift the 'openshift' profile will be used when 
+				invoking mvn. -->
+			<!-- Use this profile for any OpenShift specific customization your app 
+				will need. -->
+			<!-- By default that is to put the resulting archive into the 'webapps' 
+				folder. -->
+			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+			<id>openshift</id>
+			<build>
+				<finalName>tm</finalName>
+				<plugins>
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.1.1</version>
+						<configuration>
+							<outputDirectory>webapps</outputDirectory>
+							<warName>ROOT</warName>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
 
