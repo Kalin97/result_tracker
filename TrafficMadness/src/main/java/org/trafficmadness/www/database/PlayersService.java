@@ -12,12 +12,12 @@ import org.trafficmadness.www.user.entities.Item;
 import org.trafficmadness.www.user.entities.Player;
 
 @Singleton
-public class PlayerService 
+public class PlayersService 
 {
 	private final EntityManagerService entityManagerService;
 	
 	@Inject
-	public PlayerService(EntityManagerService entityManagerService) 
+	public PlayersService(EntityManagerService entityManagerService) 
 	{
 		this.entityManagerService = entityManagerService;
 	}

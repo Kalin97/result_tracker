@@ -12,16 +12,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.trafficmadness.www.database.PlayerService;
+import org.trafficmadness.www.database.PlayersService;
 import org.trafficmadness.www.user.entities.Player;
 
 @Path("/playerRest")
 public class PlayerRest 
 {
-	private final PlayerService playerService;
+	private final PlayersService playerService;
 	
 	@Inject
-	public PlayerRest(PlayerService database)
+	public PlayerRest(PlayersService database)
 	{
 		this.playerService = database;
 	}
