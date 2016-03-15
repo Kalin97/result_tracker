@@ -63,7 +63,8 @@ public class PlayersService
 		{
 			final TypedQuery<Player> query = em.createNamedQuery(Player.BY_EMAIL, Player.class);
 			
-			final List<Player> result = query.getResultList();
+			query.setParameter("email", email);
+			final List<Player> result = query.setMaxResults(1).getResultList();
 			
 			// TODO: more meaningful error handle
 			if (result.isEmpty()) 
