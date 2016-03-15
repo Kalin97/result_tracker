@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @XmlRootElement
 @Entity
 @Table(name="Item")
@@ -20,14 +22,19 @@ public class Item
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ITEM_ID", nullable = false)
 	private long id;
+	
 	@Column(nullable = false)
 	private String type;
+	
 	@Column(nullable = false)
 	private int level;
+	
 	@Column(name = "PLAYER_ID")
 	private long playerId;
+	
 	@ManyToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "PLAYER_ID", referencedColumnName = "PLAYER_ID")
+	@JsonBackReference
 	private Player player;
 
 	public long getId()
@@ -63,5 +70,10 @@ public class Item
 	public Player getPlayer() 
 	{
 		return player;
+	}
+	
+	public void setPlayer(Player player) 
+	{
+		this.player = player;
 	}
 }

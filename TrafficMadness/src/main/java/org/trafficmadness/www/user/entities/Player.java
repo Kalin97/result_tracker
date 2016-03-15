@@ -34,12 +34,16 @@ public class Player
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PLAYER_ID", nullable = false)
 	private long id;
+	
 	@Column(nullable = false)
 	private String name;
+	
 	@Column(nullable = false, unique = true)
 	private String email;
+	
 	@Column(nullable = false)
 	private int score;
+	
 	@OneToMany(mappedBy = "player", targetEntity = Item.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Item> items;
 		

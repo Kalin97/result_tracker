@@ -43,6 +43,7 @@ public class PlayerRest
 	
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Player postPlayerInfoByEmail(Player playerInfo)
 	{
 		return playersService.addData(playerInfo);
@@ -51,6 +52,7 @@ public class PlayerRest
 	@PUT
 	@Path("/{playerId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Player updatePlayerInfoByEmail(@PathParam("playerId") long playerId, Player playerInfo)
 	{
 		Player player = playersService.getData(playerId);

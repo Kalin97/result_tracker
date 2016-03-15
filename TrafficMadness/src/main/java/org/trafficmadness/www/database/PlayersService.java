@@ -89,13 +89,18 @@ public class PlayersService
 	
 	public Player addData(Player player)
 	{
+		for(Item item : player.getItems())
+		{
+			item.setPlayer(player);
+		}
+
 		final EntityManager em = entityManagerService.createEntityManager();
 		try 
 		{
 			em.getTransaction().begin();
 			em.persist(player);
 			em.getTransaction().commit();
-		
+			
 			return player;
 		} 
 		finally 
@@ -109,7 +114,12 @@ public class PlayersService
 	}
 	
 	public Player updateData(Player player)
-	{		
+	{				
+		for(Item item : player.getItems())
+		{
+			item.setPlayer(player);
+		}
+		
 		final EntityManager em = entityManagerService.createEntityManager();
 		try 
 		{
