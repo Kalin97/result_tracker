@@ -23,6 +23,9 @@ public class Feedback
 	@Column(name = "FEEDBACK_ID", nullable = false)
 	private long id;
 	
+	@Column(nullable = false)
+	private String senderEmail;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private FeedbackType feedbackType;
@@ -72,5 +75,15 @@ public class Feedback
 	public void setContent(String content) 
 	{
 		this.content = content;
+	}
+
+	public String getSenderEmail() 
+	{
+		return senderEmail;
+	}
+
+	public void setSenderEmail(String senderEmail) 
+	{
+		this.senderEmail = senderEmail;
 	}
 }
