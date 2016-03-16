@@ -63,14 +63,7 @@ public class PlayersService extends Service
 			// TODO: more meaningful error handle
 			if (result.isEmpty()) 
 			{
-//				return new Player();
-
-				// Remove Later
-				Player player = new Player();
-				List<Item> items = new LinkedList<Item>();
-				items.add(new Item());
-				player.setItems(items);
-				return player;
+				return new Player();
 			}
 			
 			return result.get(0);
