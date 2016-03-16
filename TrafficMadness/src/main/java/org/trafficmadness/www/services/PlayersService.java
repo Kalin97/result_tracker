@@ -1,4 +1,4 @@
-package org.trafficmadness.www.database;
+package org.trafficmadness.www.services;
 
 import java.util.LinkedList;
 import java.util.List;

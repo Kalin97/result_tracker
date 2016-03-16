@@ -1,7 +1,7 @@
 package org.trafficmadness.www.injection;
 
-import org.trafficmadness.www.database.EntityManagerService;
-import org.trafficmadness.www.database.PlayersService;
+import org.trafficmadness.www.services.EntityManagerService;
+import org.trafficmadness.www.services.PlayersService;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
