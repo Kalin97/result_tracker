@@ -8,6 +8,7 @@
 		<class>org.trafficmadness.www.user.entities.Player</class>
 		<class>org.trafficmadness.www.user.entities.Item</class>
 		<class>org.trafficmadness.www.user.entities.News</class>
+		<class>org.trafficmadness.www.user.entities.Administrator</class>
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
