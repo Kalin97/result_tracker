@@ -1,5 +1,6 @@
 package org.trafficmadness.www.services;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import org.trafficmadness.www.user.entities.Feedback;
@@ -8,6 +9,7 @@ public class FeedbacksService
 {
 	private final EntityManagerService entityManagerService;
 
+	@Inject
 	public FeedbacksService(EntityManagerService entityManagerService) 
 	{
 		this.entityManagerService = entityManagerService;

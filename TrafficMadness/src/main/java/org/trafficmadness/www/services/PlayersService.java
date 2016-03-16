@@ -2,6 +2,7 @@ package org.trafficmadness.www.services;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -12,6 +13,7 @@ public class PlayersService
 {
 	private final EntityManagerService entityManagerService;
 	
+	@Inject
 	public PlayersService(EntityManagerService entityManagerService) 
 	{
 		this.entityManagerService = entityManagerService;
