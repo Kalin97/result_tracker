@@ -3,25 +3,19 @@ package org.trafficmadness.www.services;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import org.trafficmadness.www.user.entities.Item;
 import org.trafficmadness.www.user.entities.Player;
 
-@Singleton
-public class PlayersService 
+public class PlayersService extends Service
 {
-	private final EntityManagerService entityManagerService;
-	
-	@Inject
 	public PlayersService(EntityManagerService entityManagerService) 
 	{
-		this.entityManagerService = entityManagerService;
+		super(entityManagerService);
 	}
-	
+
 	public List<Player> getData()
 	{
 		final EntityManager em = entityManagerService.createEntityManager();
