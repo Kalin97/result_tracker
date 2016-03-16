@@ -8,11 +8,13 @@ import javax.persistence.TypedQuery;
 import org.trafficmadness.www.user.entities.Item;
 import org.trafficmadness.www.user.entities.Player;
 
-public class PlayersService extends Service
+public class PlayersService
 {
+	private final EntityManagerService entityManagerService;
+	
 	public PlayersService(EntityManagerService entityManagerService) 
 	{
-		super(entityManagerService);
+		this.entityManagerService = entityManagerService;
 	}
 
 	public List<Player> getData()
