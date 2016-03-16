@@ -1,6 +1,9 @@
 package org.trafficmadness.www.injection;
 
+import org.trafficmadness.www.services.AdministratorsService;
 import org.trafficmadness.www.services.EntityManagerService;
+import org.trafficmadness.www.services.FeedbacksService;
+import org.trafficmadness.www.services.NewsService;
 import org.trafficmadness.www.services.PlayersService;
 
 import com.google.inject.Guice;
@@ -24,6 +27,9 @@ public class PlayerRestServletListener extends GuiceServletContextListener
 				{
 					bind(EntityManagerService.class);
 					bind(PlayersService.class);
+					bind(AdministratorsService.class);
+					bind(NewsService.class);
+					bind(FeedbacksService.class);
 				}
 			});
 		}

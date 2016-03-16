@@ -4,10 +4,10 @@ import javax.persistence.EntityManager;
 
 import org.trafficmadness.www.user.entities.Administrator;
 
-public class AdministratorService extends Service
+public class AdministratorsService extends Service
 {
-	public AdministratorService(EntityManagerService entityManagerService) 
-	{
+	public AdministratorsService(EntityManagerService entityManagerService)
+{
 		super(entityManagerService);
 	}
 
