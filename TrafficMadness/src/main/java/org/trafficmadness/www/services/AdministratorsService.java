@@ -4,11 +4,13 @@ import javax.persistence.EntityManager;
 
 import org.trafficmadness.www.user.entities.Administrator;
 
-public class AdministratorsService extends Service
-{
+public class AdministratorsService
+{ 	
+	private final EntityManagerService entityManagerService;
+
 	public AdministratorsService(EntityManagerService entityManagerService)
-{
-		super(entityManagerService);
+	{
+		this.entityManagerService = entityManagerService;
 	}
 
 	public Administrator getData(long id)
