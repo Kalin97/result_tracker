@@ -4,11 +4,13 @@ import javax.persistence.EntityManager;
 
 import org.trafficmadness.www.user.entities.Feedback;
 
-public class FeedbacksService extends Service
+public class FeedbacksService
 {
+	private final EntityManagerService entityManagerService;
+
 	public FeedbacksService(EntityManagerService entityManagerService) 
 	{
-		super(entityManagerService);
+		this.entityManagerService = entityManagerService;
 	}
 	
 	public Feedback getData(long id)
