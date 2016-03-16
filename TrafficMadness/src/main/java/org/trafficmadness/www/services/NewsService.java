@@ -4,11 +4,13 @@ import javax.persistence.EntityManager;
 
 import org.trafficmadness.www.user.entities.News;
 
-public class NewsService extends Service
+public class NewsService
 {
+	private final EntityManagerService entityManagerService;
+
 	public NewsService(EntityManagerService entityManagerService)
 	{
-		super(entityManagerService);
+		this.entityManagerService = entityManagerService;
 	}
 
 	public News getData(long id)
