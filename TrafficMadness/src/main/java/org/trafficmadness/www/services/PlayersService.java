@@ -1,6 +1,5 @@
 package org.trafficmadness.www.services;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -39,7 +38,7 @@ public class PlayersService extends Service
 			final Player result = em.find(Player.class, id);
 			if (result == null) 
 			{
-				throw new IllegalArgumentException("No task with id: " + id);
+				throw new IllegalArgumentException("No player with id: " + id);
 			}
 			
 			return result;
