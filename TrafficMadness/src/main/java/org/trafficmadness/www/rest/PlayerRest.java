@@ -21,9 +21,9 @@ public class PlayerRest
 	private final PlayersService playersService;
 	
 	@Inject
-	public PlayerRest(PlayersService database)
+	public PlayerRest(PlayersService playersService)
 	{
-		this.playersService = database;
+		this.playersService = playersService;
 	}
 	
 	@GET
