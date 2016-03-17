@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import org.trafficmadness.www.services.AdministratorsService;
 import org.trafficmadness.www.user.entities.Administrator;
 
-@Path("/feedback")
+@Path("/administrator")
 public class AdministratorRest 
 {
 private final AdministratorsService administratorsService;
