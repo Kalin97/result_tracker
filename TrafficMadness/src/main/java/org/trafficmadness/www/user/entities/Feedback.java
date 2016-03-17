@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -16,8 +18,14 @@ import org.trafficmadness.www.user.types.FeedbackType;
 @XmlRootElement
 @Entity
 @Table(name="Feedback")
+@NamedQueries({
+	@NamedQuery(name=Feedback.QUERY_ALL,
+		query = "SELECT f from Feedback f")
+})
 public class Feedback 
 {
+	public static final String QUERY_ALL = "feedbacksAll";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "FEEDBACK_ID", nullable = false)

@@ -1,7 +1,10 @@
 package org.trafficmadness.www.services;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import org.trafficmadness.www.user.entities.Feedback;
 
@@ -13,6 +16,21 @@ public class FeedbacksService
 	public FeedbacksService(EntityManagerService entityManagerService) 
 	{
 		this.entityManagerService = entityManagerService;
+	}
+	
+	public List<Feedback> getData()
+	{
+		final EntityManager em = entityManagerService.createEntityManager();
+		try 
+		{
+			final TypedQuery<Feedback> query = em.createNamedQuery(Feedback.QUERY_ALL, Feedback.class);
+			
+			return query.getResultList();
+		} 
+		finally 
+		{
+			em.close();
+		}
 	}
 	
 	public Feedback getData(long id)
