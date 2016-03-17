@@ -28,7 +28,7 @@ public class PlayerRest
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Player> getPlayerInfo()
+	public List<Player> getPlayers()
 	{
 		return playersService.getData();
 	}
@@ -36,7 +36,7 @@ public class PlayerRest
 	@GET
 	@Path("/{playerEmail}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Player getPlayerInfoByEmail(@PathParam("playerEmail") String playerEmail)
+	public Player getPlayerById(@PathParam("playerEmail") String playerEmail)
 	{
 		return playersService.getDataByEmail(playerEmail);
 	}
@@ -44,7 +44,7 @@ public class PlayerRest
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Player postPlayerInfoByEmail(Player playerInfo)
+	public Player postPlayer(Player playerInfo)
 	{
 		return playersService.addData(playerInfo);
 	}
@@ -53,7 +53,7 @@ public class PlayerRest
 	@Path("/{playerId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Player updatePlayerInfoByEmail(@PathParam("playerId") long playerId, Player playerInfo)
+	public Player updatePlayerById(@PathParam("playerId") long playerId, Player playerInfo)
 	{
 		Player player = playersService.getData(playerId);
 		player.setItems(playerInfo.getItems());
