@@ -28,9 +28,6 @@ public class Item
 	@Column(nullable = false)
 	private int level;
 	
-	@Column(name = "PLAYER_ID")
-	private long playerId;
-	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "PLAYER_ID", referencedColumnName = "PLAYER_ID")
 	@JsonBackReference
