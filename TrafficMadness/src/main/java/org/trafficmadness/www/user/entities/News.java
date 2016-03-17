@@ -5,10 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @XmlRootElement
 @Entity
@@ -29,9 +33,10 @@ public class News
 	@Column(nullable = false)
 	private String title;
 	
-	// TODO connect user to news
-	@Column(nullable = false)
-	private String publisher;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "ADMINISTRATOR_ID", referencedColumnName = "ADMINISTRATOR_ID")
+	@JsonBackReference
+	private Administrator administrator;
 	
 	@Column(nullable = false)
 	private String content;
@@ -56,16 +61,6 @@ public class News
 		this.title = title;
 	}
 
-	public String getPublisher() 
-	{
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) 
-	{
-		this.publisher = publisher;
-	}
-
 	public String getContent() 
 	{
 		return content;
@@ -75,4 +70,16 @@ public class News
 	{
 		this.content = content;
 	}
+
+	public Administrator getAdministrator() 
+	{
+		return administrator;
+	}
+
+	public void setAdministrator(Administrator administrator) 
+	{
+		this.administrator = administrator;
+	}
+	
+	
 }
