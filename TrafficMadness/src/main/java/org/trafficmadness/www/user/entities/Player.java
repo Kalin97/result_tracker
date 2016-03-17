@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 })
 public class Player
 {
-	public static final String QUERY_ALL = "tasksAll";
+	public static final String QUERY_ALL = "playersAll";
 	public static final String BY_EMAIL = "byEmail";
 	
 	@Id
