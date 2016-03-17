@@ -28,7 +28,7 @@ public class FeedbackRest
 
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Feedback> getPlayerInfo()
+	public List<Feedback> getFeedbacks()
 	{
 		return feedbackService.getData();
 	}
@@ -36,7 +36,7 @@ public class FeedbackRest
 	@GET
 	@Path("/{feedbackId}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Feedback getPlayerInfoByEmail(@PathParam("feedbackId") long feedbackId)
+	public Feedback getFeedbackById(@PathParam("feedbackId") long feedbackId)
 	{
 		return feedbackService.getData(feedbackId);
 	}
@@ -44,7 +44,7 @@ public class FeedbackRest
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Feedback postPlayerInfoByEmail(Feedback feedback)
+	public Feedback postFeedback(Feedback feedback)
 	{
 		return feedbackService.addData(feedback);
 	}
@@ -53,7 +53,7 @@ public class FeedbackRest
 	@Path("/{feedbackId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Feedback updatePlayerInfoByEmail(@PathParam("feedbackId") long feedbackId, Feedback newFeedback)
+	public Feedback updateFeedbackById(@PathParam("feedbackId") long feedbackId, Feedback newFeedback)
 	{
 		Feedback feedback = feedbackService.getData(feedbackId);
 		
