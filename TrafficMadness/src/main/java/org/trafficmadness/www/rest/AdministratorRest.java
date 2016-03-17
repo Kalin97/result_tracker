@@ -36,7 +36,7 @@ public class AdministratorRest
 	@GET
 	@Path("/{administratorId}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Administrator getAdministratorById(@PathParam("feedbackId") long administratorId)
+	public Administrator getAdministratorById(@PathParam("administratorId") long administratorId)
 	{
 		return administratorsService.getData(administratorId);
 	}
@@ -44,9 +44,9 @@ public class AdministratorRest
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Administrator postAdministrator(Administrator feedback)
+	public Administrator postAdministrator(Administrator administrator)
 	{
-		return administratorsService.addData(feedback);
+		return administratorsService.addData(administrator);
 	}
 	
 	@PUT
