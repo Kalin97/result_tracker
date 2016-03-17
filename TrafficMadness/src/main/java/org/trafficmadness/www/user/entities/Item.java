@@ -1,6 +1,5 @@
 package org.trafficmadness.www.user.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +31,7 @@ public class Item
 	@Column(name = "PLAYER_ID")
 	private long playerId;
 	
-	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "PLAYER_ID", referencedColumnName = "PLAYER_ID")
 	@JsonBackReference
 	private Player player;
