@@ -18,7 +18,7 @@ import org.trafficmadness.www.user.entities.Administrator;
 @Path("/administrator")
 public class AdministratorRest 
 {
-private final AdministratorsService administratorsService;
+	private final AdministratorsService administratorsService;
 	
 	@Inject
 	public AdministratorRest(AdministratorsService administratorsService)
