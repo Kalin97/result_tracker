@@ -5,14 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Entity
 @Table(name="News")
+@NamedQueries({
+	@NamedQuery(name=News.QUERY_ALL,
+		query = "SELECT n from News n")
+})
 public class News 
 {
+	public static final String QUERY_ALL = "newsAll";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "NEWS_ID", nullable = false)

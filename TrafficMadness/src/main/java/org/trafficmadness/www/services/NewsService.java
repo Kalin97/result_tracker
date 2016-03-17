@@ -1,7 +1,10 @@
 package org.trafficmadness.www.services;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import org.trafficmadness.www.user.entities.News;
 
@@ -15,6 +18,21 @@ public class NewsService
 		this.entityManagerService = entityManagerService;
 	}
 
+	public List<News> getData()
+	{
+		final EntityManager em = entityManagerService.createEntityManager();
+		try 
+		{
+			final TypedQuery<News> query = em.createNamedQuery(News.QUERY_ALL, News.class);
+			
+			return query.getResultList();
+		} 
+		finally 
+		{
+			em.close();
+		}
+	}
+	
 	public News getData(long id)
 	{
 		final EntityManager em = entityManagerService.createEntityManager();
