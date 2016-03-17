@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="News")
 @NamedQueries({
 	@NamedQuery(name=News.QUERY_ALL,
-		query = "SELECT n from News n")
+		query = "SELECT n FROM News n")
 })
 public class News 
 {

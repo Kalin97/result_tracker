@@ -21,9 +21,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="Player")
 @NamedQueries({
 	@NamedQuery(name=Player.QUERY_ALL,
-		query = "SELECT p from Player p"),
+		query = "SELECT p FROM Player p"),
 	@NamedQuery(name=Player.BY_EMAIL,
-		query = "SELECT p from Player p WHERE p.email=:email")
+		query = "SELECT p FROM Player p WHERE p.email=:email")
 })
 public class Player
 {

@@ -20,7 +20,7 @@ import org.trafficmadness.www.user.types.FeedbackType;
 @Table(name="Feedback")
 @NamedQueries({
 	@NamedQuery(name=Feedback.QUERY_ALL,
-		query = "SELECT f from Feedback f")
+		query = "SELECT f FROM Feedback f")
 })
 public class Feedback 
 {

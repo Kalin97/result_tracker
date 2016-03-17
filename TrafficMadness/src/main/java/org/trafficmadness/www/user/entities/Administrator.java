@@ -19,7 +19,7 @@ import org.trafficmadness.www.user.types.AdministratorType;
 @Table(name="Administrator")
 @NamedQueries({
 	@NamedQuery(name=Administrator.QUERY_ALL,
-		query = "SELECT a from Administrator a")
+		query = "SELECT a FROM Administrator a")
 })
 public class Administrator 
 {
