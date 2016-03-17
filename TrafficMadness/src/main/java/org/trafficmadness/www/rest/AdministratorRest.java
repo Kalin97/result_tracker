@@ -14,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.trafficmadness.www.services.AdministratorsService;
 import org.trafficmadness.www.user.entities.Administrator;
-import org.trafficmadness.www.user.entities.Feedback;
 
 @Path("/feedback")
 public class AdministratorRest 

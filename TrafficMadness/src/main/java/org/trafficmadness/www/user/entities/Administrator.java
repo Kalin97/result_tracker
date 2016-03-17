@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -15,8 +17,14 @@ import org.trafficmadness.www.user.types.AdministratorType;
 @XmlRootElement
 @Entity
 @Table(name="Administrator")
+@NamedQueries({
+	@NamedQuery(name=Administrator.QUERY_ALL,
+		query = "SELECT a from Administrator a")
+})
 public class Administrator 
 {
+	public static final String QUERY_ALL = "administratorsAll";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ADMINISTRATOR_ID", nullable = false)
