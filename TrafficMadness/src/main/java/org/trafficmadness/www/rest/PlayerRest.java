@@ -53,11 +53,11 @@ public class PlayerRest
 	@Path("/{playerId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Player updatePlayerById(@PathParam("playerId") long playerId, Player playerInfo)
+	public Player updatePlayerById(@PathParam("playerId") long playerId, Player newPlayer)
 	{
 		Player player = playersService.getData(playerId);
-		player.setItems(playerInfo.getItems());
-		player.setScore(playerInfo.getScore());
+		player.setItems(newPlayer.getItems());
+		player.setScore(newPlayer.getScore());
 		
 		return playersService.updateData(player);
 	}
