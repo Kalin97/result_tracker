@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.trafficmadness.www.services.PlayersService;
+import org.trafficmadness.www.user.entities.NormalUser;
 import org.trafficmadness.www.user.entities.Player;
 
 @Path("/playerRest")
@@ -44,9 +45,13 @@ public class PlayerRest
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Player postPlayer(Player playerInfo)
+	public Player postPlayer(Player player)
 	{
-		return playersService.addData(playerInfo);
+		NormalUser normalUser = new NormalUser();
+		player.setNormalUser(normalUser);
+		normalUser.setPlayer(player);
+		
+		return playersService.addData(player);
 	}
 	
 	@PUT

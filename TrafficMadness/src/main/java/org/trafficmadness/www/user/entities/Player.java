@@ -13,8 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @XmlRootElement
 @Entity
@@ -46,7 +49,11 @@ public class Player
 	
 	@OneToMany(mappedBy = "player", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Item> items;
-		
+	
+	@OneToOne(mappedBy = "player", cascade = CascadeType.ALL, optional = false)
+	@JsonBackReference
+	private NormalUser normalUser;
+	
 	public Player()
 	{
 		items = new LinkedList<Item>();
@@ -105,5 +112,15 @@ public class Player
 	public void setName(String name) 
 	{
 		this.name = name;
+	}
+
+	public NormalUser getNormalUser() 
+	{
+		return normalUser;
+	}
+
+	public void setNormalUser(NormalUser normalUser) 
+	{
+		this.normalUser = normalUser;
 	}
 }
