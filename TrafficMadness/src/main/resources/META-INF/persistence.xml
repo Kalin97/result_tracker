@@ -10,6 +10,7 @@
 		<class>org.trafficmadness.www.user.entities.News</class>
 		<class>org.trafficmadness.www.user.entities.Administrator</class>
 		<class>org.trafficmadness.www.user.entities.Feedback</class>
+		<class>org.trafficmadness.www.user.entities.NormalUser</class>
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
