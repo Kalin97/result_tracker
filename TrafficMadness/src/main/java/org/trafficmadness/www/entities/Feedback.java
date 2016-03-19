@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -31,8 +33,9 @@ public class Feedback
 	@Column(name = "FEEDBACK_ID", nullable = false)
 	private long id;
 	
-	@Column(nullable = false)
-	private String senderEmail;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "NORMALUSER_ID", referencedColumnName = "NORMALUSER_ID")
+	private NormalUser normalUser;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
@@ -85,13 +88,14 @@ public class Feedback
 		this.content = content;
 	}
 
-	public String getSenderEmail() 
+	public NormalUser getNormalUser() 
 	{
-		return senderEmail;
+		return normalUser;
 	}
 
-	public void setSenderEmail(String senderEmail) 
+	public void setNormalUser(NormalUser normalUser) 
 	{
-		this.senderEmail = senderEmail;
+		this.normalUser = normalUser;
 	}
+
 }
