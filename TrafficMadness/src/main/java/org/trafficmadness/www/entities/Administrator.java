@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.trafficmadness.www.interfaces.IUser;
 import org.trafficmadness.www.types.AdministratorType;
 
 @XmlRootElement
@@ -26,7 +27,7 @@ import org.trafficmadness.www.types.AdministratorType;
 	@NamedQuery(name=Administrator.QUERY_ALL,
 		query = "SELECT a FROM Administrator a")
 })
-public class Administrator 
+public class Administrator implements IUser
 {
 	public static final String QUERY_ALL = "administratorsAll";
 	
@@ -98,5 +99,9 @@ public class Administrator
 		this.news = news;
 	}
 
-	
+	@Override
+	public boolean isAdministrator() 
+	{
+		return true;
+	}
 }

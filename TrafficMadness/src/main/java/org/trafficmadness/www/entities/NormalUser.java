@@ -11,10 +11,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.trafficmadness.www.interfaces.IUser;
+
 @XmlRootElement
 @Entity
 @Table(name="NormalUser")
-public class NormalUser 
+public class NormalUser implements IUser
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,5 +45,11 @@ public class NormalUser
 	public void setPlayer(Player player) 
 	{
 		this.player = player;
+	}
+
+	@Override
+	public boolean isAdministrator() 
+	{
+		return false;
 	}
 }
