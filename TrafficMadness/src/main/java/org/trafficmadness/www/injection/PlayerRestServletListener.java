@@ -5,6 +5,7 @@ import org.trafficmadness.www.services.AuthenticationService;
 import org.trafficmadness.www.services.EntityManagerService;
 import org.trafficmadness.www.services.FeedbacksService;
 import org.trafficmadness.www.services.NewsService;
+import org.trafficmadness.www.services.NormalUserService;
 import org.trafficmadness.www.services.PlayersService;
 
 import com.google.inject.Guice;
@@ -30,6 +31,7 @@ public class PlayerRestServletListener extends GuiceServletContextListener
 					bind(AuthenticationService.class);
 					bind(PlayersService.class);
 					bind(AdministratorsService.class);
+					bind(NormalUserService.class);
 					bind(NewsService.class);
 					bind(FeedbacksService.class);
 				}

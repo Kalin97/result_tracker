@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -20,8 +22,14 @@ import org.trafficmadness.www.interfaces.IUser;
 @XmlRootElement
 @Entity
 @Table(name="NormalUser")
+@NamedQueries({
+	@NamedQuery(name=NormalUser.QUERY_ALL,
+		query = "SELECT u FROM NormalUser u")
+})
 public class NormalUser implements IUser
 {
+	public static final String QUERY_ALL = "NormalUsersAll";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "NORMALUSER_ID", nullable = false)
