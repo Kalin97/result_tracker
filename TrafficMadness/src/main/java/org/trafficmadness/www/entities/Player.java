@@ -1,6 +1,5 @@
 package org.trafficmadness.www.entities;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -53,16 +52,6 @@ public class Player
 	@OneToOne(mappedBy = "player", cascade = CascadeType.ALL, optional = false)
 	@JsonBackReference
 	private NormalUser normalUser;
-	
-	public Player()
-	{
-		items = new LinkedList<Item>();
-	}
-	
-	public Player(List<Item> items)
-	{
-		this.items = items;
-	}
 	
 	public long getId()
 	{
