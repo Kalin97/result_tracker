@@ -1,6 +1,7 @@
 package org.trafficmadness.www.injection;
 
 import org.trafficmadness.www.services.AdministratorsService;
+import org.trafficmadness.www.services.AuthenticationService;
 import org.trafficmadness.www.services.EntityManagerService;
 import org.trafficmadness.www.services.FeedbacksService;
 import org.trafficmadness.www.services.NewsService;
@@ -26,6 +27,7 @@ public class PlayerRestServletListener extends GuiceServletContextListener
 				protected void configureServlets() 
 				{
 					bind(EntityManagerService.class);
+					bind(AuthenticationService.class);
 					bind(PlayersService.class);
 					bind(AdministratorsService.class);
 					bind(NewsService.class);
