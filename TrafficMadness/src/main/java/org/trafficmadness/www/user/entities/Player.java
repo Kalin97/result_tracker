@@ -44,7 +44,7 @@ public class Player
 	@Column(nullable = false)
 	private int score;
 	
-	@OneToMany(mappedBy = "player", targetEntity = Item.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "player", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Item> items;
 		
 	public Player()
