@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement
 @Entity
@@ -50,7 +50,6 @@ public class Player
 	private List<Item> items;
 	
 	@OneToOne(mappedBy = "player", cascade = CascadeType.ALL, optional = false)
-	@JsonBackReference
 	private NormalUser normalUser;
 	
 	public long getId()
@@ -103,11 +102,13 @@ public class Player
 		this.name = name;
 	}
 
+	@JsonIgnore
 	public NormalUser getNormalUser() 
 	{
 		return normalUser;
 	}
-
+	
+	@JsonIgnore
 	public void setNormalUser(NormalUser normalUser) 
 	{
 		this.normalUser = normalUser;
