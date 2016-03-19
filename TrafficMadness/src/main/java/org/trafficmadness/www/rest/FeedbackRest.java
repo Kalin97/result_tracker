@@ -12,8 +12,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.trafficmadness.www.entities.Feedback;
 import org.trafficmadness.www.services.FeedbacksService;
-import org.trafficmadness.www.user.entities.Feedback;
 
 @Path("/feedback")
 public class FeedbackRest 

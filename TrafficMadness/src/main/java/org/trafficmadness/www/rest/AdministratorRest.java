@@ -12,8 +12,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.trafficmadness.www.entities.Administrator;
 import org.trafficmadness.www.services.AdministratorsService;
-import org.trafficmadness.www.user.entities.Administrator;
 
 @Path("/administrator")
 public class AdministratorRest 

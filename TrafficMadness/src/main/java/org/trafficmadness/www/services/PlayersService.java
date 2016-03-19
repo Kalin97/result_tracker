@@ -6,8 +6,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import org.trafficmadness.www.user.entities.Item;
-import org.trafficmadness.www.user.entities.Player;
+import org.trafficmadness.www.entities.Item;
+import org.trafficmadness.www.entities.Player;
 
 public class PlayersService
 {

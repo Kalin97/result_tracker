@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import org.trafficmadness.www.user.entities.Administrator;
+import org.trafficmadness.www.entities.Administrator;
 
 public class AdministratorsService
 { 	

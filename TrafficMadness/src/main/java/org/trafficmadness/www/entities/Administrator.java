@@ -1,4 +1,4 @@
-package org.trafficmadness.www.user.entities;
+package org.trafficmadness.www.entities;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.trafficmadness.www.user.types.AdministratorType;
+import org.trafficmadness.www.types.AdministratorType;
 
 @XmlRootElement
 @Entity

@@ -1,4 +1,4 @@
-package org.trafficmadness.www.user.types;
+package org.trafficmadness.www.types;
 
 public enum FeedbackType 
 {

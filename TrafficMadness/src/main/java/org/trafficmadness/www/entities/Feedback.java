@@ -1,4 +1,4 @@
-package org.trafficmadness.www.user.entities;
+package org.trafficmadness.www.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +12,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.trafficmadness.www.user.types.FeedbackStatus;
-import org.trafficmadness.www.user.types.FeedbackType;
+import org.trafficmadness.www.types.FeedbackStatus;
+import org.trafficmadness.www.types.FeedbackType;
 
 @XmlRootElement
 @Entity

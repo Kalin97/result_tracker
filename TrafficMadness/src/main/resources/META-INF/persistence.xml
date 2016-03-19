@@ -5,12 +5,12 @@
 
 	<persistence-unit name="lateforschool-jpa">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-		<class>org.trafficmadness.www.user.entities.Player</class>
-		<class>org.trafficmadness.www.user.entities.Item</class>
-		<class>org.trafficmadness.www.user.entities.News</class>
-		<class>org.trafficmadness.www.user.entities.Administrator</class>
-		<class>org.trafficmadness.www.user.entities.Feedback</class>
-		<class>org.trafficmadness.www.user.entities.NormalUser</class>
+		<class>org.trafficmadness.www.entities.Player</class>
+		<class>org.trafficmadness.www.entities.Item</class>
+		<class>org.trafficmadness.www.entities.News</class>
+		<class>org.trafficmadness.www.entities.Administrator</class>
+		<class>org.trafficmadness.www.entities.Feedback</class>
+		<class>org.trafficmadness.www.entities.NormalUser</class>
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>

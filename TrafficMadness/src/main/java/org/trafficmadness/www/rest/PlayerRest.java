@@ -12,9 +12,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.trafficmadness.www.entities.NormalUser;
+import org.trafficmadness.www.entities.Player;
 import org.trafficmadness.www.services.PlayersService;
-import org.trafficmadness.www.user.entities.NormalUser;
-import org.trafficmadness.www.user.entities.Player;
 
 @Path("/playerRest")
 public class PlayerRest 

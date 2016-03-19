@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import org.trafficmadness.www.user.entities.News;
+import org.trafficmadness.www.entities.News;
 
 public class NewsService
 {

@@ -1,4 +1,4 @@
-package org.trafficmadness.www.user.entities;
+package org.trafficmadness.www.entities;
 
 import java.util.LinkedList;
 import java.util.List;
