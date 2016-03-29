@@ -6,13 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @XmlRootElement
 @Entity
@@ -35,12 +34,25 @@ public class News
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "ADMINISTRATOR_ID", referencedColumnName = "ADMINISTRATOR_ID")
-	@JsonBackReference
 	private Administrator administrator;
 	
-	@Column(nullable = false)
+	@Lob
+	@Column(nullable = false, columnDefinition = "TEXT")
 	private String content;
 	
+	@Column(nullable = false)
+	private String image;
+	
+	public String getImage() 
+	{
+		return image;
+	}
+
+	public void setImage(String image) 
+	{
+		this.image = image;
+	}
+
 	public long getId()
 	{
 		return id;
@@ -80,6 +92,4 @@ public class News
 	{
 		this.administrator = administrator;
 	}
-	
-	
 }

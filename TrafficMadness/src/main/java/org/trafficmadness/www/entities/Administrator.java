@@ -20,6 +20,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.trafficmadness.www.interfaces.IUser;
 import org.trafficmadness.www.types.AdministratorType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @XmlRootElement
 @Entity
 @Table(name="Administrator")
@@ -36,7 +38,7 @@ public class Administrator implements IUser
 	@Column(name = "ADMINISTRATOR_ID", nullable = false)
 	private long id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 	
 	@Column(nullable = false)
@@ -69,6 +71,7 @@ public class Administrator implements IUser
 		this.email = email;
 	}
 
+	@JsonIgnore
 	public String getPassword() 
 	{
 		return password;
@@ -83,12 +86,13 @@ public class Administrator implements IUser
 	{
 		return administratorType;
 	}
-
+	
 	public void setAdministratorType(AdministratorType administratorType) 
 	{
 		this.administratorType = administratorType;
 	}
 
+	@JsonIgnore
 	public List<News> getNews() 
 	{
 		return news;
@@ -99,6 +103,7 @@ public class Administrator implements IUser
 		this.news = news;
 	}
 
+	@JsonIgnore
 	@Override
 	public boolean isAdministrator() 
 	{

@@ -13,16 +13,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.trafficmadness.www.entities.News;
+import org.trafficmadness.www.services.AdministratorsService;
 import org.trafficmadness.www.services.NewsService;
 
 @Path("/news")
 public class NewsRest 
 {
 	private final NewsService newsService;
+	private final AdministratorsService administratorsService;
 	
 	@Inject
-	public NewsRest(NewsService newsService)
+	public NewsRest(NewsService newsService, AdministratorsService administratorsService)
 	{
+		this.administratorsService = administratorsService;
 		this.newsService = newsService;
 	}
 
@@ -46,6 +49,8 @@ public class NewsRest
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public News postNews(News news)
 	{
+		news.setAdministrator(administratorsService.getData(1));
+		
 		return newsService.addData(news);
 	}
 	
