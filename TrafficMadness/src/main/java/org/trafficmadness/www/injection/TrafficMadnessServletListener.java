@@ -13,7 +13,7 @@ import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 
-public class PlayerRestServletListener extends GuiceServletContextListener
+public class TrafficMadnessServletListener extends GuiceServletContextListener
 {
 	public static Injector injector;
 
