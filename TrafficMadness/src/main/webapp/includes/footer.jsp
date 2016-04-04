@@ -8,9 +8,9 @@
 
     </div>
 
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/libs/jquery.js"></script>
+    <script src="scripts/libs/bootstrap.min.js"></script>
     <script src="scripts/rest.js"></script>
-    <script src="scripts/lodash.core.js"></script>
+    <script src="scripts/libs/lodash.core.js"></script>
 </body>
 </html>

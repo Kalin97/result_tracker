@@ -11,6 +11,8 @@ import org.trafficmadness.www.entities.Player;
 
 public class PlayersService
 {
+	private final int MAX_TOP_PLAYERS = 10;
+	
 	private final EntityManagerService entityManagerService;
 	
 	@Inject
@@ -19,6 +21,21 @@ public class PlayersService
 		this.entityManagerService = entityManagerService;
 	}
 
+	public List<Player> getTopPlayers()
+	{
+		final EntityManager em = entityManagerService.createEntityManager();
+		try 
+		{
+			final TypedQuery<Player> query = em.createNamedQuery(Player.SORTED_BY_SCORE, Player.class);
+			
+			return query.setMaxResults(MAX_TOP_PLAYERS).getResultList();
+		} 
+		finally 
+		{
+			em.close();
+		}
+	}
+	
 	public List<Player> getData()
 	{
 		final EntityManager em = entityManagerService.createEntityManager();

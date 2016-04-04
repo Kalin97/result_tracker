@@ -28,8 +28,16 @@ public class PlayerRest
 	}
 	
 	@GET
+	@Path("/topPlayers")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Player> getPlayers()
+	public List<Player> getTopPlayers()
+	{
+		return playersService.getTopPlayers();
+	}
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<Player> getAllPlayers()
 	{
 		return playersService.getData();
 	}

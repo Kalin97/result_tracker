@@ -22,40 +22,14 @@
 	</div>
 	<div class="row">
 		<div class="col-md">
-			<h3 id="showNewsTitle">Testing title</h3>
-			<h4 id="showNewsAuthor">kalo40@abv.bg</h4>
+			<h3 id="showNewsTitle"></h3>
+			<h4 id="showNewsAuthor"></h4>
 			<img class="pull-right"
 				id="showNewsImage"
-				src="http://i2.wp.com/bitcast-a-sm.bitgravity.com/slashfilm/wp/wp-content/images/game-of-thrones-season-6-battle-700x300.jpg"
+				src=""
 				alt=""
 				style="padding: 10px;">
-			<p id="showNewsContent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliquam. Pellentesque elementum dui a felis
-				tristique pulvinar eu vel orci. Duis porta quis tortor pharetra
-				viverra. MaecLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliquam. Pellentesque elementum dui a felis
-				tristique pulvinar eu vel orci. Duis porta quis tortor pharetra
-				viverra. MaecLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliquam. Pellentesque elementum dui a felis
-				tristique pulvinar eu vel orci. Duis porta quis tortor pharetra
-				viverra. MaecLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliquam. Pellentesque elementum dui a felis
-				tristique pulvinar eu vel orci. Duis porta quis tortor pharetra
-				viverra. Maecpsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliquam. Pellentesque elementum dui a felis
-				tristique pulvinar eu vel orci. Duis porta quis tortor pharetra
-				viverra. MaecLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliquam. Pellentesque elementum dui a felis
-				tristique pulvinar eu vel orci. Duis porta quis tortor pharetra
-				viverra. MaecLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliqupsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliquam. Pellentesque elementum dui a felis
-				tristique pulvinar eu vel orci. Duis porta quis tortor pharetra
-				viverra. MaecLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliquam. Pellentesque elementum dui a felis
-				tristique pulvinar eu vel orci. Duis porta quis tortor pharetra
-				viverra. MaecLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-				finibus porttitor aliqu</p>
+			<p id="showNewsContent"></p>
 		</div>
 	</div>
 	
@@ -92,5 +66,5 @@
 </div>
  -->
 <%@ include file="includes/footer.jsp" %>
-<script src="scripts/news.js"></script>
+<script src="scripts/pages/news.js"></script>
     

@@ -2,12 +2,11 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Late for school website">
+    <meta name="author" content="Kalin Marinov">
 
     <title>Late For School</title>
 
@@ -25,15 +24,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Late For School</a>
+                <a class="navbar-brand" href="index.jsp">Late For School</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">News</a>
+                        <a href="index.jsp">News</a>
                     </li>
                     <li>
-                        <a href="#">Ranking</a>
+                        <a href="ranking.jsp">Ranking</a>
                     </li>
                     <li>
                         <a href="#">About</a>

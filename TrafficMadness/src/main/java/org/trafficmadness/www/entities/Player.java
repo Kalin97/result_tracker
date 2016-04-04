@@ -25,12 +25,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 	@NamedQuery(name=Player.QUERY_ALL,
 		query = "SELECT p FROM Player p"),
 	@NamedQuery(name=Player.BY_EMAIL,
-		query = "SELECT p FROM Player p WHERE p.email=:email")
+		query = "SELECT p FROM Player p WHERE p.email=:email"),
+	@NamedQuery(name=Player.SORTED_BY_SCORE,
+		query = "SELECT p FROM Player p ORDER BY p.score DESC"),
 })
 public class Player
 {
 	public static final String QUERY_ALL = "playersAll";
 	public static final String BY_EMAIL = "byEmail";
+	public static final String SORTED_BY_SCORE = "sortedByScore";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
