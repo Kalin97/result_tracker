@@ -15,23 +15,31 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.trafficmadness.www.interfaces.IUser;
 import org.trafficmadness.www.types.AdministratorType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 @XmlRootElement
 @Entity
 @Table(name="Administrator")
 @NamedQueries({
 	@NamedQuery(name=Administrator.QUERY_ALL,
-		query = "SELECT a FROM Administrator a")
+		query = "SELECT a FROM Administrator a"),
+	@NamedQuery(name=Administrator.QUERY_BY_EMAIL,
+		query = "SELECT a FROM Administrator a WHERE a.email=:email")
 })
 public class Administrator implements IUser
 {
 	public static final String QUERY_ALL = "administratorsAll";
+	public static final String QUERY_BY_EMAIL = "queryByEmail";
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,12 +79,16 @@ public class Administrator implements IUser
 		this.email = email;
 	}
 
+	@XmlTransient
 	@JsonIgnore
-	public String getPassword() 
+	public String getPassword()
 	{
 		return password;
 	}
 
+	@XmlElement
+	@JsonInclude
+	@JsonSetter
 	public void setPassword(String password)
 	{
 		this.password = password;
@@ -92,6 +104,7 @@ public class Administrator implements IUser
 		this.administratorType = administratorType;
 	}
 
+	@XmlTransient
 	@JsonIgnore
 	public List<News> getNews() 
 	{
@@ -102,7 +115,8 @@ public class Administrator implements IUser
 	{
 		this.news = news;
 	}
-
+	
+	@XmlTransient
 	@JsonIgnore
 	@Override
 	public boolean isAdministrator() 

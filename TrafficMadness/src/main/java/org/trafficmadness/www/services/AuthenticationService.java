@@ -6,27 +6,37 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.PasswordMatcher;
 import org.apache.shiro.authc.credential.PasswordService;
 import org.apache.shiro.mgt.RealmSecurityManager;
 import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.realm.Realm;
-import org.trafficmadness.www.entities.NormalUser;
+import org.apache.shiro.subject.Subject;
+import org.trafficmadness.www.entities.Administrator;
+
+import com.google.inject.Provider;
 
 @Singleton
 public class AuthenticationService 
 {
-	private NormalUser user;
+	private Provider<AdministratorsService> administratorService;
 	
 	@Inject
-	public AuthenticationService()
+	public AuthenticationService(Provider<AdministratorsService> administratorService)
 	{
-		user = new NormalUser();
+		this.administratorService = administratorService;
 	}
 	
-	public NormalUser getCurrentlyLoggedInMember() 
+	public Administrator getCurrentlyLoggedInMember(Subject subject) 
 	{
-		return user;
+		final String email = (String) subject.getPrincipal();
+		if(email == null)
+		{
+			return null;
+		}
+		
+		return administratorService.get().getAdministratorByEmail(email);
 	}
 
 	public String encryptPassword(String password) 
@@ -56,5 +66,16 @@ public class AuthenticationService
 			throw new IllegalStateException("Bad configuration");
 		}
 		return credentialsMatcher.getPasswordService();
+	}
+	
+	public void login(Subject subject, String email, String password) 
+	{
+		final UsernamePasswordToken token = new UsernamePasswordToken(email, password);
+		subject.login(token);
+	}
+
+	public void logout(Subject subject) 
+	{
+		subject.logout();
 	}
 }

@@ -21,22 +21,22 @@ function deleteRequest(url)
 	});
 }
 
-function postRequest(url) 
+function postRequest(url, requestData) 
 {
 	return $.ajax(endpoint(url), {
 		method: "POST",
 		dataType: "json",
-		data: JSON.stringify(task),
+		data: JSON.stringify(requestData),
 		contentType: "application/json; charset=utf-8"
 	});
 }
 
-function updateTask(url, data) 
+function putRequest(url, requestData) 
 {
 	return $.ajax(endpoint(url), {
 		method: "PUT",
 		dataType: "json",
-		data: JSON.stringify(data),
+		data: JSON.stringify(requestData),
 		contentType: "application/json; charset=utf-8"
 	});
 }

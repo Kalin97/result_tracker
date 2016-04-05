@@ -93,4 +93,29 @@ public class NewsService
 			em.close();
 		}
 	}
+
+	public void deleteData(long newsId) 
+	{
+		final EntityManager em = entityManagerService.createEntityManager();
+		try 
+		{
+			em.getTransaction().begin();
+			final News task = em.find(News.class, newsId);
+			if (task == null) 
+			{
+				throw new IllegalArgumentException("No news with id: " + newsId);
+			}
+			em.remove(task);
+			
+			em.getTransaction().commit();
+		} 
+		finally 
+		{
+			if (em.getTransaction().isActive()) 
+			{
+				em.getTransaction().rollback();
+			}
+			em.close();
+		}		
+	}
 }

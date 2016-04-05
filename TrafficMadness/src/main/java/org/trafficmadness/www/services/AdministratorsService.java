@@ -11,10 +11,12 @@ import org.trafficmadness.www.entities.Administrator;
 public class AdministratorsService
 { 	
 	private final EntityManagerService entityManagerService;
-
+	private final AuthenticationService authenticationService;
+	
 	@Inject
-	public AdministratorsService(EntityManagerService entityManagerService)
+	public AdministratorsService(EntityManagerService entityManagerService, AuthenticationService authenticationService)
 	{
+		this.authenticationService = authenticationService;
 		this.entityManagerService = entityManagerService;
 	}
 
@@ -54,6 +56,7 @@ public class AdministratorsService
 
 	public Administrator addData(Administrator administrator)
 	{
+		administrator.setPassword(authenticationService.encryptPassword(administrator.getPassword()));
 		final EntityManager em = entityManagerService.createEntityManager();
 		try 
 		{
@@ -90,6 +93,23 @@ public class AdministratorsService
 			{
 				em.getTransaction().rollback();
 			}
+			em.close();
+		}
+	}
+
+	public Administrator getAdministratorByEmail(String email) 
+	{
+		final EntityManager em = entityManagerService.createEntityManager();
+		try 
+		{
+			final TypedQuery<Administrator> query = em.createNamedQuery(Administrator.QUERY_BY_EMAIL, Administrator.class);
+			
+			query.setParameter("email", email);
+			
+			return query.getSingleResult();
+		} 
+		finally 
+		{
 			em.close();
 		}
 	}

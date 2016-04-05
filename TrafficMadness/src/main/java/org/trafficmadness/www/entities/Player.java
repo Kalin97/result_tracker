@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -105,12 +106,14 @@ public class Player
 		this.name = name;
 	}
 
+	@XmlTransient
 	@JsonIgnore
 	public NormalUser getNormalUser() 
 	{
 		return normalUser;
 	}
 	
+	@XmlTransient
 	@JsonIgnore
 	public void setNormalUser(NormalUser normalUser) 
 	{
