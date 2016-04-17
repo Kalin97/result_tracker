@@ -9,6 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.subject.Subject;
 import org.secnod.shiro.jaxrs.Auth;
 import org.trafficmadness.www.entities.Administrator;
@@ -28,6 +30,7 @@ public class AuthenticationRest
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresGuest
 	public Administrator login(@Auth Subject subject, Administrator administrator)
 	{
 		authenticationService.login(subject, administrator.getEmail(), administrator.getPassword());
@@ -43,6 +46,7 @@ public class AuthenticationRest
 	}
 	
 	@DELETE
+	@RequiresAuthentication
 	public void logout(@Auth Subject subject) 
 	{
 		authenticationService.logout(subject);

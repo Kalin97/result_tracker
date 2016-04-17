@@ -1,4 +1,4 @@
-gameStorageApp.controller('newsController', function ($scope, $http) {
+gameStorageControllers.controller('newsController', function ($scope, httpRest) {
 	"use strict"
 
 	$scope.apiUrl = "api/v1/news/";
@@ -14,12 +14,12 @@ gameStorageApp.controller('newsController', function ($scope, $http) {
 
 	$scope.panel = $scope.showAllNewsPanel;
 
-	$http.get($scope.apiUrl).success(function(allNews) {
+	httpRest.get($scope.apiUrl).success(function(allNews) {
 		$scope.allNews = allNews;
 	});
 
 	$scope.showNewsWithId = function(newsId) {
-		$http.get($scope.apiUrl + newsId).success(function(currentNews) {
+		httpRest.get($scope.apiUrl + newsId).success(function(currentNews) {
 			$scope.currentNews = currentNews;
 
 			$scope.showPanel($scope.showNewsPanel);
@@ -35,17 +35,10 @@ gameStorageApp.controller('newsController', function ($scope, $http) {
 	}
 
 	$scope.updateNews = function(news) {
-		$http({
-			url: $scope.apiUrl + $scope.currentNews.id,
-			dataType: 'json',
-			method: 'PUT',
-			data: news,
-			headers: {
-			"Content-Type": "application/json"
-			}
-		}).success(function(response) {
+		httpRest.put($scope.apiUrl + $scope.currentNews.id, news)
+		.success(function() {
 			$scope.setAlert(true, "You successfully updated this news.");
-		}).error(function(error) {
+		}).error(function() {
 			$scope.setAlert(false, "Wasn't able to update news successfully.");
 		});
 	}
@@ -58,5 +51,22 @@ gameStorageApp.controller('newsController', function ($scope, $http) {
 
 	$scope.disableAlert = function() {
 		$scope.alertBoxShow = false;
+	}
+
+	$scope.deleteNews = function(newsId) {
+		httpRest.delete($scope.apiUrl + newsId).success(function() {
+			location.reload();
+		});
+	}
+
+	$scope.createNews = function(newNews) {
+		httpRest.post($scope.apiUrl, newNews)
+		.success(function() {
+			$scope.setAlert(true, "You successfully created this news.");
+			$scope.currentNews = newNews;
+			location.reload();
+		}).error(function() {
+			$scope.setAlert(false, "Wasn't able to create news successfully.");
+		});
 	}
 });

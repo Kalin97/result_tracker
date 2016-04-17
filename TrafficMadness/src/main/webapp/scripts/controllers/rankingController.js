@@ -1,9 +1,9 @@
-gameStorageApp.controller('rankingController', function ($scope, $http) {
+gameStorageControllers.controller('rankingController', function ($scope, httpRest) {
 	"use strict"
 
-	$scope.apiUrl = "api/v1/playerRest/topPlayers";
+	$scope.apiUrl = "api/v1/playerRest/topPlayers/";
 
-	$http.get($scope.apiUrl).success(function(players) {
+	httpRest.get($scope.apiUrl).success(function(players) {
 		$scope.players = players;
 	});
 });

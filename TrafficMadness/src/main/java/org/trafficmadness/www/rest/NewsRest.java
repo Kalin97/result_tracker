@@ -63,6 +63,7 @@ public class NewsRest
 	@Path("/{newsId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresAuthentication
 	public News updateNewsById(@PathParam("newsId") long newsId, News newNews)
 	{
 		News news = newsService.getData(newsId);
@@ -75,6 +76,7 @@ public class NewsRest
 	
 	@DELETE
 	@Path("/{newsId}")
+	@RequiresAuthentication
 	public void deleteTask(@PathParam("newsId") long newsId) {
 		newsService.deleteData(newsId);
 	}

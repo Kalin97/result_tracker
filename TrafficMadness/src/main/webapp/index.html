@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gameStorageApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Late for school website">
+    <meta name="author" content="Kalin Marinov">
+
+    <title>Late For School</title>
+
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+    <link href="styles/form.css" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" ng-click="reloadPage()">Late For School</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="#/news">News</a>
+					</li>
+					<li>
+						<a href="#/ranking">Ranking</a>
+					</li>
+					<li>
+						<a href="#">About</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav pull-right">
+					<li ng-show="!authentication.isLoggedIn()">
+						<a href="#/login">Login</a>
+					</li>
+					<li ng-show="authentication.isLoggedIn()">
+						<a ng-click="authentication.logout(); reloadPage()">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div ng-view class="container">
+		
+	</div>
+    
+    <div class="container">
+    	<hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; 2016</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+	<!-- Libs -->
+	<script src="scripts/libs/jquery.js"></script>
+	<script src="scripts/libs/bootstrap.min.js"></script>
+	<script src="scripts/libs/angular.min.js"></script>
+	<script src="scripts/libs/angular-cookies.min.js"></script>
+	<script src="scripts/libs/angular-route.min.js"></script>
+	<!-- Libs -->
+
+	<!-- Config -->
+	<script src="scripts/config/angular.js"></script>
+	<script src="scripts/config/routes.js"></script>
+	<!-- Config -->
+
+	<!-- Services -->
+	<script src="scripts/services/httpRestService.js"></script>
+	<script src="scripts/services/authenticationService.js"></script>
+	<!-- Services -->
+
+	<!-- Controllers -->
+	<script src="scripts/controllers/newsController.js"></script>
+	<script src="scripts/controllers/loginController.js"></script>
+	<script src="scripts/controllers/rankingController.js"></script>
+	<!-- Controllers -->
+</body>
+</html>
