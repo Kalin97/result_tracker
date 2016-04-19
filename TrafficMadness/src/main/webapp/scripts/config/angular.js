@@ -1,4 +1,11 @@
-var gameStorageApp = angular.module('gameStorageApp', ['ngCookies', 'ngRoute', 'gameStorageControllers']);
+var gameStorageApp = angular.module('gameStorageApp', 
+[
+	'ngCookies',
+	'ngRoute',
+	'ngResource',
+	'gameStorageControllers',
+	'gameStorageServices'
+]);
 
 gameStorageApp.run(function($rootScope, authentication) {
 	$rootScope.authentication = authentication;
@@ -6,3 +13,4 @@ gameStorageApp.run(function($rootScope, authentication) {
 });
 
 var gameStorageControllers = angular.module('gameStorageControllers', []);
+var gameStorageServices = angular.module('gameStorageServices', []);

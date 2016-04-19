@@ -1,4 +1,4 @@
-gameStorageApp.factory('authentication', function($cookies, httpRest) {
+gameStorageServices.factory('authentication', function($cookies, httpRest) {
 	var authenticationUrl = "api/v1/authentication/";
 	var userCookieKey = "userCookieKey";
 

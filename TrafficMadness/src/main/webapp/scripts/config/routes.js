@@ -8,6 +8,10 @@ gameStorageApp.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'partials/news.html',
 		controller: 'newsController'
 	}).
+	when('/player/:playerEmail', {
+		templateUrl: 'partials/player.html',
+		controller: 'playerController'
+	}).
 	when('/login', {
 		templateUrl: 'partials/login.html',
 		controller: 'loginController'

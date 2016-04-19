@@ -1,4 +1,4 @@
-gameStorageApp.factory('httpRest', function($http) {
+gameStorageServices.factory('httpRest', function($http) {
 	return {
 		get: function (url) {
 			return $http.get(url);

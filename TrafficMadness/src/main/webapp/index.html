@@ -34,9 +34,6 @@
 					<li>
 						<a href="#/ranking">Ranking</a>
 					</li>
-					<li>
-						<a href="#">About</a>
-					</li>
 				</ul>
 				<ul class="nav navbar-nav pull-right">
 					<li ng-show="!authentication.isLoggedIn()">
@@ -68,9 +65,10 @@
 	<!-- Libs -->
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/bootstrap.min.js"></script>
-	<script src="scripts/libs/angular.min.js"></script>
-	<script src="scripts/libs/angular-cookies.min.js"></script>
-	<script src="scripts/libs/angular-route.min.js"></script>
+	<script src="scripts/libs/angular/angular.min.js"></script>
+	<script src="scripts/libs/angular/angular-cookies.min.js"></script>
+	<script src="scripts/libs/angular/angular-route.min.js"></script>
+	<script src="scripts/libs/angular/angular-resource.min.js"></script>
 	<!-- Libs -->
 
 	<!-- Config -->
@@ -81,12 +79,15 @@
 	<!-- Services -->
 	<script src="scripts/services/httpRestService.js"></script>
 	<script src="scripts/services/authenticationService.js"></script>
+	<script src="scripts/services/modelServices/Player.js"></script>
+	<script src="scripts/services/modelServices/News.js"></script>
 	<!-- Services -->
 
 	<!-- Controllers -->
 	<script src="scripts/controllers/newsController.js"></script>
 	<script src="scripts/controllers/loginController.js"></script>
 	<script src="scripts/controllers/rankingController.js"></script>
+	<script src="scripts/controllers/playerController.js"></script>
 	<!-- Controllers -->
 </body>
 </html>

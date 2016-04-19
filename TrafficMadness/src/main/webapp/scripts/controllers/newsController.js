@@ -1,7 +1,6 @@
-gameStorageControllers.controller('newsController', function ($scope, httpRest) {
+gameStorageControllers.controller('newsController', function ($scope, News) {
 	"use strict"
 
-	$scope.apiUrl = "api/v1/news/";
 	$scope.maxContentLength = 200;
 	$scope.alertBoxShow = false;
 
@@ -14,33 +13,36 @@ gameStorageControllers.controller('newsController', function ($scope, httpRest) 
 
 	$scope.panel = $scope.showAllNewsPanel;
 
-	httpRest.get($scope.apiUrl).success(function(allNews) {
-		$scope.allNews = allNews;
-	});
+	$scope.allNews = News.query();
 
-	$scope.showNewsWithId = function(newsId) {
-		httpRest.get($scope.apiUrl + newsId).success(function(currentNews) {
-			$scope.currentNews = currentNews;
-
-			$scope.showPanel($scope.showNewsPanel);
-		});
+	$scope.updateNews = function() {
+		$scope.currentNews.$update({ newsId: $scope.currentNews.id },
+			function() {
+				$scope.setAlert(true, "You successfully updated this news.");
+			},
+			function() {
+				$scope.setAlert(false, "Wasn't able to update news successfully.");
+			});
 	}
 
-	$scope.showPanel = function(panelName) {
-		$scope.panel = panelName;
+	$scope.deleteNews = function() {
+		$scope.currentNews.$delete({ newsId: $scope.currentNews.id },
+			function() {
+				location.reload();
+			});
 	}
 
-	$scope.ifActive = function(panelName) {
-		return $scope.panel == panelName;
-	}
-
-	$scope.updateNews = function(news) {
-		httpRest.put($scope.apiUrl + $scope.currentNews.id, news)
-		.success(function() {
-			$scope.setAlert(true, "You successfully updated this news.");
-		}).error(function() {
-			$scope.setAlert(false, "Wasn't able to update news successfully.");
-		});
+	$scope.createNews = function(newNewsArg) {
+		var newNews = new News(newNewsArg);
+		newNews.$save(
+			function() {
+				$scope.setAlert(true, "You successfully created this news.");
+				$scope.currentNews = newNews;
+				location.reload();
+			}, 
+			function() {
+				$scope.setAlert(false, "Wasn't able to create news successfully.");
+			});
 	}
 
 	$scope.setAlert = function(isSuccessful, message) {
@@ -53,20 +55,17 @@ gameStorageControllers.controller('newsController', function ($scope, httpRest) 
 		$scope.alertBoxShow = false;
 	}
 
-	$scope.deleteNews = function(newsId) {
-		httpRest.delete($scope.apiUrl + newsId).success(function() {
-			location.reload();
+	$scope.showNewsWithId = function(newsId) {
+		$scope.currentNews = News.get({ newsId: newsId }, function() {
+			$scope.showPanel($scope.showNewsPanel);
 		});
 	}
 
-	$scope.createNews = function(newNews) {
-		httpRest.post($scope.apiUrl, newNews)
-		.success(function() {
-			$scope.setAlert(true, "You successfully created this news.");
-			$scope.currentNews = newNews;
-			location.reload();
-		}).error(function() {
-			$scope.setAlert(false, "Wasn't able to create news successfully.");
-		});
+	$scope.showPanel = function(panelName) {
+		$scope.panel = panelName;
+	}
+
+	$scope.ifActive = function(panelName) {
+		return $scope.panel == panelName;
 	}
 });

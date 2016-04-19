@@ -13,7 +13,7 @@
 	<div ng-repeat="news in allNews">
 		<div class="row">
 			<div class="col-md-7">
-				<img class="img-responsive" src="{{ news.image }}" alt="">
+				<img class="img-responsive" ng-src="{{ news.image }}" alt="">
 			</div>
 			<div class="col-md-5">
 				<h3>{{ news.title }}</h3>
@@ -62,7 +62,7 @@
 			<h3>{{ currentNews.title }}</h3>
 			<h4 id="showNewsAuthor">{{ currentNews.administrator.email }}</h4>
 			<img class="pull-right"
-				src="{{ currentNews.image }}"
+				ng-src="{{ currentNews.image }}"
 				alt=""
 				style="padding: 10px;">
 			<p>{{ currentNews.content }}</p>
@@ -132,8 +132,8 @@
 			  		<label for="editNewsPanelContent">Content:</label>
 			  		<textarea id="editNewsPanelContent" ng-model="currentNews.content" class="form-control" rows="10"></textarea>
 			  	</div>
-				<button type="button" class="btn btn-default" ng-click="updateNews(currentNews)">Update</button>
-				<button type="button" class="btn btn-danger" ng-click="deleteNews(currentNews.id)">Delete</button>
+				<button type="button" class="btn btn-default" ng-click="updateNews()">Update</button>
+				<button type="button" class="btn btn-danger" ng-click="deleteNews()">Delete</button>
 			</form>
 		</div>
 	</div>
