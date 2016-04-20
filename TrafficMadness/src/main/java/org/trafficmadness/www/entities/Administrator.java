@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import org.trafficmadness.www.interfaces.IUser;
 import org.trafficmadness.www.types.AdministratorType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 	@NamedQuery(name=Administrator.QUERY_BY_EMAIL,
 		query = "SELECT a FROM Administrator a WHERE a.email=:email")
 })
-public class Administrator implements IUser
+public class Administrator
 {
 	public static final String QUERY_ALL = "administratorsAll";
 	public static final String QUERY_BY_EMAIL = "queryByEmail";
@@ -114,13 +113,5 @@ public class Administrator implements IUser
 	public void setNews(List<News> news) 
 	{
 		this.news = news;
-	}
-	
-	@XmlTransient
-	@JsonIgnore
-	@Override
-	public boolean isAdministrator() 
-	{
-		return true;
 	}
 }

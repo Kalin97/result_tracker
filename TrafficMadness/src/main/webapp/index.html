@@ -40,6 +40,9 @@
 						<a href="#/login">Login</a>
 					</li>
 					<li ng-show="authentication.isLoggedIn()">
+						<a>{{ authentication.getUser().email }}</a>
+					</li>
+					<li ng-show="authentication.isLoggedIn()">
 						<a ng-click="authentication.logout(); reloadPage()">Logout</a>
 					</li>
 				</ul>
@@ -73,21 +76,26 @@
 
 	<!-- Config -->
 	<script src="scripts/config/angular.js"></script>
-	<script src="scripts/config/routes.js"></script>
 	<!-- Config -->
+
+	<!-- Providers -->
+	<script src="scripts/providers/routesProvider.js"></script>
+	<!-- <script src="scripts/providers/httpProvider.js"></script> -->
+	<!-- Providers -->
 
 	<!-- Services -->
 	<script src="scripts/services/httpRestService.js"></script>
 	<script src="scripts/services/authenticationService.js"></script>
 	<script src="scripts/services/modelServices/Player.js"></script>
 	<script src="scripts/services/modelServices/News.js"></script>
+	<script src="scripts/services/modelServices/NormalUser.js"></script>
 	<!-- Services -->
 
 	<!-- Controllers -->
 	<script src="scripts/controllers/newsController.js"></script>
 	<script src="scripts/controllers/loginController.js"></script>
 	<script src="scripts/controllers/rankingController.js"></script>
-	<script src="scripts/controllers/playerController.js"></script>
+	<script src="scripts/controllers/normalUserController.js"></script>
 	<!-- Controllers -->
 </body>
 </html>

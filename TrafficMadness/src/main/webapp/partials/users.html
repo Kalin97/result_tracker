@@ -1,0 +1,95 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">
+			{{ user.player.name }}
+			<small>Profile</small>
+			<button class="btn btn-danger pull-right" ng-show="authentication.isHeadLoggedIn()" ng-click="showPanel(editUserInfoPanel)">
+				Edit
+			</button>
+		</h1>
+	</div>
+</div>
+
+<div ng-show="ifActive(showUseInfoPanel)">
+	<div class="row">
+		<div class="col-md-3">
+			<h3>Player Details</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<b>Email</b>
+		</div>
+		<div class="col-md-3">
+			{{ user.player.email }}
+		</div>
+	</div>
+	<div class="row voffset2">
+		<div class="col-md-3">
+			<b>Score</b>
+		</div>
+		<div class="col-md-3">
+			{{ user.player.score }}
+		</div>
+	</div>
+	<div class="row voffset2">
+		<div class="col-md-3">
+			<b>Items:</b>
+		</div>
+	</div>
+	<div class="row voffset2">
+		<div class="col-lg-6">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Level</th>
+					</tr>
+				</thead>
+				<tbody>
+				  <tr ng-repeat="item in user.player.items">
+				    <td>{{ item.type }}</td>
+				    <td>{{ item.level }}</td>
+				  </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div ng-show="ifActive(editUserInfoPanel)">
+	<div class="row" style="padding-bottom: 10px;">
+		<div class="col-md">
+		  	<button type="button" class="btn btn-primary" ng-click="showPanel(showUseInfoPanel); disableAlert()">
+				<span class="glyphicon glyphicon-chevron-left"></span> Back 
+			</button>	
+		</div>
+	</div>
+	<div class="row" ng-show="alertBoxShow">
+		<div class="col-md-8">
+			<div class='alert alert-{{ alertBoxType }}' role='alert'>
+				{{ alertBoxMessage }}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<form role="form" action="">
+				<div class="form-group">
+					<label for="editUserPanelName">Name:</label>
+			    	<input id="editUserPanelName" ng-model="user.player.name" type="text" class="form-control">
+			  	</div>
+			  	<div class="form-group">
+			  		<label for="editUserPanelEmail">Email:</label>
+			    	<input id="editUserPanelEmail" ng-model="user.player.email" type="text" class="form-control">
+			  	</div>
+			  	<div class="form-group">
+			  		<label for="editUserPanelScore">Score:</label>
+			    	<input id="editUserPanelScore" ng-model="user.player.score" type="text" class="form-control">
+			  	</div>
+				<button type="button" class="btn btn-default" ng-click="updateUser()">Update</button>
+				<button type="button" class="btn btn-danger" ng-click="deleteUser()">Delete</button>
+			</form>
+		</div>
+	</div>
+</div>

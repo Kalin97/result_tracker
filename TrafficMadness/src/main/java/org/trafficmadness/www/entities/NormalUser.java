@@ -17,7 +17,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.trafficmadness.www.interfaces.IUser;
 
 @XmlRootElement
 @Entity
@@ -26,7 +25,7 @@ import org.trafficmadness.www.interfaces.IUser;
 	@NamedQuery(name=NormalUser.QUERY_ALL,
 		query = "SELECT u FROM NormalUser u")
 })
-public class NormalUser implements IUser
+public class NormalUser
 {
 	public static final String QUERY_ALL = "NormalUsersAll";
 	
@@ -74,11 +73,5 @@ public class NormalUser implements IUser
 	public void setFriends(List<NormalUser> friends) 
 	{
 		this.friends = friends;
-	}
-	
-	@Override
-	public boolean isAdministrator() 
-	{
-		return false;
 	}
 }

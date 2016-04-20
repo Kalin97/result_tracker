@@ -8,7 +8,8 @@ gameStorageServices.factory('authentication', function($cookies, httpRest) {
 		login: function(user) {
 			var request = httpRest.post(authenticationUrl, user);
 
-			request.success(function() {
+			request.success(function(responseUser) {
+				user = responseUser;
 				user.password = null;
 				$cookies.putObject(userCookieKey, user);
 				this.user = user;
@@ -29,6 +30,10 @@ gameStorageServices.factory('authentication', function($cookies, httpRest) {
 
 		isLoggedIn: function() {
 			return this.user != null;
+		},
+
+		isHeadLoggedIn: function() {
+			return this.user != null && this.user.administratorType == "HEAD";
 		}
 	}
 });

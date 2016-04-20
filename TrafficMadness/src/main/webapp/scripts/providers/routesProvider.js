@@ -1,4 +1,4 @@
-gameStorageApp.config(['$routeProvider', function($routeProvider) {
+gameStorageApp.config(function($routeProvider) {
 	$routeProvider.
 	when('/', {
 		templateUrl: 'partials/news.html',
@@ -8,9 +8,9 @@ gameStorageApp.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'partials/news.html',
 		controller: 'newsController'
 	}).
-	when('/player/:playerEmail', {
-		templateUrl: 'partials/player.html',
-		controller: 'playerController'
+	when('/users/:playerEmail', {
+		templateUrl: 'partials/users.html',
+		controller: 'normalUserController'
 	}).
 	when('/login', {
 		templateUrl: 'partials/login.html',
@@ -23,4 +23,4 @@ gameStorageApp.config(['$routeProvider', function($routeProvider) {
 	otherwise({
 		redirectTo: '/'
 	});
-}]);
+});

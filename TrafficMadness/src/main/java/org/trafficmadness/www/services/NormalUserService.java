@@ -93,4 +93,29 @@ public class NormalUserService
 			em.close();
 		}
 	}
+	
+	public void deleteData(long userId) 
+	{
+		final EntityManager em = entityManagerService.createEntityManager();
+		try 
+		{
+			em.getTransaction().begin();
+			final NormalUser user = em.find(NormalUser.class, userId);
+			if (user == null) 
+			{
+				throw new IllegalArgumentException("No user with id: " + userId);
+			}
+			em.remove(user);
+			
+			em.getTransaction().commit();
+		} 
+		finally 
+		{
+			if (em.getTransaction().isActive()) 
+			{
+				em.getTransaction().rollback();
+			}
+			em.close();
+		}		
+	}
 }

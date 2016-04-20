@@ -1,5 +1,10 @@
 gameStorageServices.factory('News', function($resource) {
     return $resource('api/v1/news/:newsId', {}, {
-		update: { method: "PUT" },
+		update: { 
+			method: "PUT",
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}
 	});
 });
