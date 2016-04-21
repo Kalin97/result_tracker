@@ -2,11 +2,11 @@ gameStorageControllers.controller('normalUserController', function ($scope, $rou
 	"use strict"
 
 	// ----------------- Panels -----------------
-	$scope.showUseInfoPanel = "showUseInfoPanel";
+	$scope.showUserInfoPanel = "showUserInfoPanel";
 	$scope.editUserInfoPanel = "editUserInfoPanel";
 	// ----------------- Panels -----------------
 
-	$scope.panel = $scope.showUseInfoPanel;
+	$scope.panel = $scope.showUserInfoPanel;
 	$scope.user = NormalUser.getByEmail({ playerEmail: $routeParams.playerEmail });
 
 	$scope.updateUser = function() {

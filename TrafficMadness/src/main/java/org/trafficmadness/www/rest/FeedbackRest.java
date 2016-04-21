@@ -12,22 +12,29 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.trafficmadness.www.entities.Feedback;
+import org.trafficmadness.www.entities.NormalUser;
 import org.trafficmadness.www.services.FeedbacksService;
+import org.trafficmadness.www.services.NormalUserService;
+import org.trafficmadness.www.types.FeedbackStatus;
 
 @Path("/feedback")
 public class FeedbackRest 
 {
 	private final FeedbacksService feedbackService;
+	private final NormalUserService normalUserService;
 	
 	@Inject
-	public FeedbackRest(FeedbacksService feedbackService)
+	public FeedbackRest(FeedbacksService feedbackService, NormalUserService normalUserService)
 	{
 		this.feedbackService = feedbackService;
+		this.normalUserService = normalUserService;
 	}
 
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresAuthentication
 	public List<Feedback> getFeedbacks()
 	{
 		return feedbackService.getData();
@@ -35,6 +42,7 @@ public class FeedbackRest
 	
 	@GET
 	@Path("/{feedbackId}")
+	@RequiresAuthentication
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Feedback getFeedbackById(@PathParam("feedbackId") long feedbackId)
 	{
@@ -46,6 +54,12 @@ public class FeedbackRest
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Feedback postFeedback(Feedback feedback)
 	{
+		// For testing
+		NormalUser normalUser = normalUserService.getData().get(0);
+		feedback.setNormalUser(normalUser);
+		
+		feedback.setFeedbackStatus(FeedbackStatus.ACTIVE);
+		
 		return feedbackService.addData(feedback);
 	}
 	
@@ -53,13 +67,12 @@ public class FeedbackRest
 	@Path("/{feedbackId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@RequiresAuthentication
 	public Feedback updateFeedbackById(@PathParam("feedbackId") long feedbackId, Feedback newFeedback)
 	{
 		Feedback feedback = feedbackService.getData(feedbackId);
 		
-		feedback.setContent(newFeedback.getContent());
 		feedback.setFeedbackStatus(newFeedback.getFeedbackStatus());
-		feedback.setFeedbackType(newFeedback.getFeedbackType());
 		
 		return feedbackService.updateData(feedback);
 	}

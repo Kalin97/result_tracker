@@ -45,7 +45,7 @@ public class Feedback
 	@Column(nullable = false)
 	private FeedbackStatus feedbackStatus;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "TEXT")
 	private String content;
 
 	public long getId() 

@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Feedback
+            <small>From Users</small>
+        </h1>
+    </div>
+</div>
+
+<div ng-show="authentication.isLoggedIn()">
+	<div class="row" ng-show="ifActive(showAllFeedbacksPanel)">
+	    <div class="col-lg-12">
+			<table class="table table-bordered">
+			  <thead class="thead-inverse">
+			    <tr>
+			      <th>Id</th>
+			      <th>Type</th>
+			      <th>Status</th>
+			      <th>Sender</th>
+			      <th>Info</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<tr ng-repeat="feedback in feedbacks">
+					<th>{{ feedback.id }}</th>
+					<td>{{ feedback.feedbackType }}</td>
+					<td>{{ feedback.feedbackStatus }}</td>
+					<td>{{ feedback.normalUser.player.email }}</td>
+					<td><a href='#/feedback/{{ feedback.id }}'>Show</a></td>
+			  	</tr>
+			  </tbody>
+			</table>
+	    </div>
+	</div>
+
+	<div ng-show="ifActive(showFeedbackInfoPanel)">
+		<div class="row" ng-show="alertBoxShow">
+			<div class="col-md-8">
+				<div class='alert alert-{{ alertBoxType }}' role='alert'>
+					{{ alertBoxMessage }}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1">
+				<b>Id</b>
+			</div>
+			<div class="col-md-3">
+				{{ feedback.id }}
+			</div>
+		</div>
+		<div class="row voffset2">
+			<div class="col-md-1">
+				<b>Type</b>
+			</div>
+			<div class="col-md-3">
+				{{ feedback.feedbackType }}
+			</div>
+		</div>
+		<div class="row voffset2">
+			<div class="col-md-1">
+				<b>Status</b>
+			</div>
+			<div class="col-md-3">
+				<select ng-model="feedback.feedbackStatus" ng-change="updateFeedback()">
+					<option>ACTIVE</option>
+					<option>PENDING</option>
+					<option>CLOSED</option>
+				</select>
+			</div>
+		</div>
+		<div class="row voffset2">
+			<div class="col-md-1">
+				<b>Sender</b>
+			</div>
+			<div class="col-md-3">
+				{{ feedback.normalUser.player.email }}
+			</div>
+		</div>
+		<div class="row voffset2">
+			<div class="col-md-1">
+				<b>Content</b>
+			</div>
+			<div class="col-md-9">
+				{{ feedback.content }}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-show="!authentication.isLoggedIn()">
+	<div class="row" ng-show="alertBoxShow">
+		<div class="col-md-8">
+			<div class='alert alert-{{ alertBoxType }}' role='alert'>
+				{{ alertBoxMessage }}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<form role="form" action="">
+				<div class="form-group col-xs-3">
+					<label for="createFeedbackType">Type:</label>
+					<select class="form-control" ng-model="newFeedback.feedbackType" id="createFeedbackType">
+						<option>PROBLEM</option>
+						<option>SUGGESTION</option>
+					</select>
+				</div>
+				<div class="form-group col-xs-12">
+					<label for="createFeedbackContent">Content:</label>
+					<textarea id="editUserPanelEmail" ng-model="newFeedback.content" class="form-control"></textarea>
+				</div>
+				<div class="form-group col-xs-12">
+					<button type="button" class="btn btn-success" ng-click="createFeedback(newFeedback)">
+						Create
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>

@@ -20,6 +20,14 @@ gameStorageApp.config(function($routeProvider) {
 		templateUrl: 'partials/ranking.html',
 		controller: 'rankingController'
 	}).
+	when('/feedback/:feedbackId', {
+		templateUrl: 'partials/feedback.html',
+		controller: 'feedbackController'
+	}).
+	when('/feedback/', {
+		templateUrl: 'partials/feedback.html',
+		controller: 'feedbackController'
+	}).
 	otherwise({
 		redirectTo: '/'
 	});
