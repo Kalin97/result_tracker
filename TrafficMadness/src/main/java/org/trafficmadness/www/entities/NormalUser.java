@@ -16,6 +16,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.trafficmadness.www.entities.Player;
 
 
 @XmlRootElement
@@ -23,11 +24,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="NormalUser")
 @NamedQueries({
 	@NamedQuery(name=NormalUser.QUERY_ALL,
-		query = "SELECT u FROM NormalUser u")
+		query = "SELECT u FROM NormalUser u"),
+	@NamedQuery(name=NormalUser.NORMAL_USER_BY_PLAYER_NAME,
+		query = "SELECT u FROM NormalUser u JOIN u.player p WHERE p.name=:name")
 })
 public class NormalUser
 {
 	public static final String QUERY_ALL = "NormalUsersAll";
+	public static final String NORMAL_USER_BY_PLAYER_NAME = "NormalUserPlayerName";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

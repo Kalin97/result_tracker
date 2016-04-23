@@ -118,4 +118,19 @@ public class NormalUserService
 			em.close();
 		}		
 	}
+
+	public NormalUser getNormalUserByName(String name) 
+	{
+		final EntityManager em = entityManagerService.createEntityManager();
+		try 
+		{
+			final TypedQuery<NormalUser> query = em.createNamedQuery(NormalUser.QUERY_ALL, NormalUser.class);
+			
+			return query.getResultList().get(0);
+		} 
+		finally 
+		{
+			em.close();
+		}
+	}
 }

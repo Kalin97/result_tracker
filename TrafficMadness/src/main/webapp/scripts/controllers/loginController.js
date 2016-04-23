@@ -1,4 +1,4 @@
-gameStorageControllers.controller('loginController', function ($scope) {
+gameStorageControllers.controller('loginController', function ($scope, $http, facebook) {
 	"use strict"
 
 	$scope.apiUrl = "api/v1/authentication/";
@@ -11,6 +11,14 @@ gameStorageControllers.controller('loginController', function ($scope) {
 			window.location.replace($scope.redirectPage);
 		}).error(function() {
 			$scope.setAlert(false, "Wasn't able to login successfully.");
+		});
+	}
+
+	$scope.loginWithFacebook = function() {
+		facebook.getUserEmail().then(function(response) {
+			$http.post("api/v1/facebookAuthentication/", response.name, function(response) {
+				console.log(response);
+			});
 		});
 	}
 

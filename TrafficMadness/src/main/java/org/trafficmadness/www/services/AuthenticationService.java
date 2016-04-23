@@ -14,6 +14,7 @@ import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.subject.Subject;
 import org.trafficmadness.www.entities.Administrator;
+import org.trafficmadness.www.entities.NormalUser;
 
 import com.google.inject.Provider;
 
@@ -21,11 +22,14 @@ import com.google.inject.Provider;
 public class AuthenticationService 
 {
 	private Provider<AdministratorsService> administratorService;
+	private Provider<NormalUserService> normalUserService;
 	
 	@Inject
-	public AuthenticationService(Provider<AdministratorsService> administratorService)
+	public AuthenticationService(Provider<AdministratorsService> administratorService,
+			Provider<NormalUserService> normalUserService)
 	{
 		this.administratorService = administratorService;
+		this.normalUserService = normalUserService;
 	}
 	
 	public Administrator getCurrentlyLoggedInMember(Subject subject) 
@@ -37,6 +41,17 @@ public class AuthenticationService
 		}
 		
 		return administratorService.get().getAdministratorByEmail(email);
+	}
+	
+	public NormalUser getCurrentlyLoggedInUser(Subject subject) 
+	{
+		final String name = (String) subject.getPrincipal();
+		if(name == null)
+		{
+			return null;
+		}
+		
+		return normalUserService.get().getNormalUserByName(name);
 	}
 
 	public String encryptPassword(String password) 

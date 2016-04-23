@@ -46,6 +46,11 @@ public class AdministratorRest
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Administrator postAdministrator(Administrator administrator)
 	{
+		if(administrator.getPassword().equals(administrator.getEmail()))
+		{
+			return null;
+		}
+
 		return administratorsService.addData(administrator);
 	}
 	
