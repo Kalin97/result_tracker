@@ -8,9 +8,9 @@ gameStorageServices.factory('facebook', function($q) {
 	                fields: 'name'
 	            }, function(response) {
 	                if (!response || response.error) {
-	                    deferred.reject('Error occured');
+	                    deferred.reject(null);
 	                } else {
-	                    deferred.resolve(response);
+	                    deferred.resolve(response.name);
 	                }
 	            });
 	        });

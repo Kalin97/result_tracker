@@ -1,21 +1,17 @@
 gameStorageServices.factory('authentication', function($cookies, httpRest) {
-	var authenticationUrl = "api/v1/authentication/";
 	var userCookieKey = "userCookieKey";
+	var authenticationUrl = "api/v1/authentication/";
 
 	return {
 		user: $cookies.getObject(userCookieKey),
 
-		login: function(user) {
-			var request = httpRest.post(authenticationUrl, user);
+		login: function(userEmail, userRole) {
+			this.user = {
+				email: userEmail,
+				role: userRole
+			};
 
-			request.success(function(responseUser) {
-				user = responseUser;
-				user.password = null;
-				$cookies.putObject(userCookieKey, user);
-				this.user = user;
-			});
-
-			return request;
+			$cookies.putObject(userCookieKey, this.user);
 		},
 
 		logout: function() {
@@ -27,6 +23,10 @@ gameStorageServices.factory('authentication', function($cookies, httpRest) {
 		getUser: function() {
 			return this.user;
 		}, 
+
+		getUserRole: function() {
+			return user.userRole;
+		},
 
 		isLoggedIn: function() {
 			return this.user != null;

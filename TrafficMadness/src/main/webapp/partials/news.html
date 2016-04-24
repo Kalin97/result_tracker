@@ -52,7 +52,7 @@
 			<button class="btn btn-primary" ng-click="showPanel(showAllNewsPanel)">
 				<span class="glyphicon glyphicon-chevron-left"></span> Back
 			</button>
-			<button class="btn btn-danger pull-right" ng-show="authentication.isLoggedIn()" ng-click="showPanel(editNewsPanel)">
+			<button class="btn btn-danger pull-right" ng-show="!authentication.isLoggedIn()" ng-click="showPanel(editNewsPanel)">
 				Edit
 			</button>
 		</div>

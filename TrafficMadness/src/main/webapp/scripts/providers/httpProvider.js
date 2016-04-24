@@ -1,17 +1,17 @@
-gameStorageApp.config(function($httpProvider, $rootScope) {
+gameStorageApp.config(function($httpProvider) {
 	$httpProvider.interceptors.push(function($q) {
 		return {
 			'responseError': function(rejection) {
-				if(rejection.status == 404) {
-					$rootScope.authentication.logout()
-					// location.reload();
+				var deferred = $q.defer();
+
+				if(rejection.status == 401) {
+					console.log("logout");
+					location.reload();
 				}
 
-				if (canRecover(rejection)) {
-					return responseOrNewPromise
-				}
+				deferred.reject(rejection);
 
-				return $q.reject(rejection);
+				return deferred.promise;
 			}
 		};
 	});

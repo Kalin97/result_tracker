@@ -7,6 +7,12 @@ var gameStorageApp = angular.module('gameStorageApp',
 	'gameStorageServices'
 ]);
 
+gameStorageApp.constant("AUTH_ROLES", {
+	HeadAdmin: 0,
+	Admin: 1,
+	User: 2
+});
+
 gameStorageApp.run(function($rootScope, $window, authentication) {
 	$rootScope.authentication = authentication;
 
