@@ -12,29 +12,34 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.subject.Subject;
+import org.secnod.shiro.jaxrs.Auth;
+import org.trafficmadness.www.annotation.RequiresAdministrator;
+import org.trafficmadness.www.annotation.RequiresNormalUser;
 import org.trafficmadness.www.entities.Feedback;
 import org.trafficmadness.www.entities.NormalUser;
 import org.trafficmadness.www.services.FeedbacksService;
 import org.trafficmadness.www.services.NormalUserService;
+import org.trafficmadness.www.services.PlayersService;
 import org.trafficmadness.www.types.FeedbackStatus;
 
 @Path("/feedback")
 public class FeedbackRest 
 {
 	private final FeedbacksService feedbackService;
-	private final NormalUserService normalUserService;
+	private final PlayersService playersService;
 	
 	@Inject
-	public FeedbackRest(FeedbacksService feedbackService, NormalUserService normalUserService)
+	public FeedbackRest(FeedbacksService feedbackService,
+			PlayersService playersService)
 	{
 		this.feedbackService = feedbackService;
-		this.normalUserService = normalUserService;
+		this.playersService = playersService;	
 	}
 
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@RequiresAuthentication
+	@RequiresAdministrator
 	public List<Feedback> getFeedbacks()
 	{
 		return feedbackService.getData();
@@ -42,7 +47,7 @@ public class FeedbackRest
 	
 	@GET
 	@Path("/{feedbackId}")
-	@RequiresAuthentication
+	@RequiresAdministrator
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Feedback getFeedbackById(@PathParam("feedbackId") long feedbackId)
 	{
@@ -52,10 +57,12 @@ public class FeedbackRest
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Feedback postFeedback(Feedback feedback)
+	@RequiresNormalUser
+	public Feedback postFeedback(@Auth Subject subject, Feedback feedback)
 	{
-		// For testing
-		NormalUser normalUser = normalUserService.getData().get(0);
+		String userEmail = subject.getPrincipal().toString();
+		
+		NormalUser normalUser = playersService.getDataByName(userEmail).getNormalUser();
 		feedback.setNormalUser(normalUser);
 		
 		feedback.setFeedbackStatus(FeedbackStatus.ACTIVE);
@@ -67,7 +74,7 @@ public class FeedbackRest
 	@Path("/{feedbackId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@RequiresAuthentication
+	@RequiresAdministrator
 	public Feedback updateFeedbackById(@PathParam("feedbackId") long feedbackId, Feedback newFeedback)
 	{
 		Feedback feedback = feedbackService.getData(feedbackId);

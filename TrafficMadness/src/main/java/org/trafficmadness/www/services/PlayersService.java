@@ -94,6 +94,30 @@ public class PlayersService
 		}
 	}
 	
+	public Player getDataByName(String name)
+	{
+		final EntityManager em = entityManagerService.createEntityManager();
+		try 
+		{
+			final TypedQuery<Player> query = em.createNamedQuery(Player.BY_NAME, Player.class);
+			
+			query.setParameter("name", name);
+			final List<Player> result = query.setMaxResults(1).getResultList();
+			
+			// TODO: more meaningful error handle
+			if (result.isEmpty()) 
+			{
+				return new Player();
+			}
+			
+			return result.get(0);
+		} 
+		finally 
+		{
+			em.close();
+		}
+	}
+	
 	public Player addData(Player player)
 	{
 		for(Item item : player.getItems())

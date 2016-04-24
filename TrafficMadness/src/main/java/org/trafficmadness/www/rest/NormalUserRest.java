@@ -53,16 +53,6 @@ public class NormalUserRest
 		return playersService.getDataByEmail(playerEmail).getNormalUser();
 	}
 	
-//  User can only be created from the game!
-//	@POST
-//	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-//	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-//	@RequiresGuest
-//	public NormalUser postNormalUser(NormalUser normalUser)
-//	{
-//		return normalUsersService.addData(normalUser);
-//	}
-	
 	@PUT
 	@Path("/{normalUserId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

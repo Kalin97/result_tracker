@@ -42,8 +42,11 @@
 					<li ng-show="!authentication.isLoggedIn()">
 						<a href="#/login">Login</a>
 					</li>
-					<li ng-show="authentication.isLoggedIn()">
+					<li ng-show="authentication.isLoggedInAdmin()">
 						<a>{{ authentication.getUser().email }}</a>
+					</li>
+					<li ng-show="authentication.isLoggedInWithRole(AUTH_ROLES.USER)">
+						<a ng-href="#/users/{{ authentication.getUser().email }}">{{ authentication.getUser().email }}</a>
 					</li>
 					<li ng-show="authentication.isLoggedIn()">
 						<a ng-click="authentication.logout(); reloadPage()">Logout</a>

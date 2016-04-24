@@ -29,11 +29,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 		query = "SELECT p FROM Player p WHERE p.email=:email"),
 	@NamedQuery(name=Player.SORTED_BY_SCORE,
 		query = "SELECT p FROM Player p ORDER BY p.score DESC"),
+	@NamedQuery(name=Player.BY_NAME,
+		query = "SELECT p FROM Player p WHERE p.name=:name")
 })
 public class Player
 {
 	public static final String QUERY_ALL = "playersAll";
 	public static final String BY_EMAIL = "byEmail";
+	public static final String BY_NAME = "byName";
 	public static final String SORTED_BY_SCORE = "sortedByScore";
 	
 	@Id

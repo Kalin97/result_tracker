@@ -13,9 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.subject.Subject;
 import org.secnod.shiro.jaxrs.Auth;
+import org.trafficmadness.www.annotation.RequiresAdministrator;
 import org.trafficmadness.www.entities.News;
 import org.trafficmadness.www.services.AuthenticationService;
 import org.trafficmadness.www.services.NewsService;
@@ -51,7 +51,7 @@ public class NewsRest
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@RequiresAuthentication
+	@RequiresAdministrator
 	public News createNews(@Auth Subject subject, News news)
 	{
 		news.setAdministrator(authenticationService.getCurrentlyLoggedInMember(subject));
@@ -63,7 +63,7 @@ public class NewsRest
 	@Path("/{newsId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@RequiresAuthentication
+	@RequiresAdministrator
 	public News updateNewsById(@PathParam("newsId") long newsId, News newNews)
 	{
 		News news = newsService.getData(newsId);
@@ -76,8 +76,8 @@ public class NewsRest
 	
 	@DELETE
 	@Path("/{newsId}")
-	@RequiresAuthentication
-	public void deleteTask(@PathParam("newsId") long newsId) {
+	@RequiresAdministrator
+	public void deleteNews(@PathParam("newsId") long newsId) {
 		newsService.deleteData(newsId);
 	}
 }
