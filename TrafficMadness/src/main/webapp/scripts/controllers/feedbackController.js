@@ -1,5 +1,7 @@
-gameStorageControllers.controller('feedbackController', function ($scope, $routeParams, Feedback) {
+gameStorageControllers.controller('feedbackController', function ($scope, $routeParams, Feedback, AUTH_ROLES) {
 	"use strict"
+
+	$scope.feedbackUri = "#/feedback/";
 
 	// ----------------- Panels -----------------
 	$scope.showFeedbackInfoPanel = "showFeedbackInfoPanel";
@@ -38,6 +40,10 @@ gameStorageControllers.controller('feedbackController', function ($scope, $route
 			function() {
 				$scope.setAlert(false, "Wasn't able to update feedback successfully.");
 			});
+	}
+
+	$scope.feedbackBackAction = function() {
+		location.href = $scope.feedbackUri;
 	}
 
 	$scope.setAlert = function(isSuccessful, message) {

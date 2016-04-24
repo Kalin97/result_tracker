@@ -1,4 +1,4 @@
-gameStorageControllers.controller('loginController', function ($scope, $http, facebook, httpRest, AUTH_ROLES) {
+gameStorageControllers.controller('loginController', function ($scope, $http, facebook, httpRest) {
 	"use strict"
 
 	$scope.headAdminServerString = "HEAD";
@@ -9,7 +9,9 @@ gameStorageControllers.controller('loginController', function ($scope, $http, fa
 	$scope.login = function(user) {
 		httpRest.post($scope.apiUrl, user)
 		.success(function(loggedInUser) {
-			var role = loggedInUser.administratorType == $scope.headAdminServerString ? AUTH_ROLES.HeadAdmin : AUTH_ROLES.Admin;
+			var role = loggedInUser.administratorType == $scope.headAdminServerString ? 
+				$scope.AUTH_ROLES.HEAD_ADMIN : $scope.AUTH_ROLES.ADMIN;
+
 			$scope.authentication.login(loggedInUser.email, role);
 
 			$scope.setAlert(true, "You successfully logged in.");
@@ -23,7 +25,7 @@ gameStorageControllers.controller('loginController', function ($scope, $http, fa
 		facebook.getUserEmail().then(function(userEmail) {
 			$http.post($scope.facebookAuthUri, userEmail)
 			.success(function(loggedInUser) {
-				$scope.authentication.login(loggedInUser.player.email, AUTH_ROLES.User);
+				$scope.authentication.login(loggedInUser.player.email, $scope.AUTH_ROLES.USER);
 
 				$scope.setAlert(true, "You successfully logged in.");
 				window.location.replace($scope.redirectPage);

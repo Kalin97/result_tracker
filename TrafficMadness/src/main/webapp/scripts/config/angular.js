@@ -8,13 +8,14 @@ var gameStorageApp = angular.module('gameStorageApp',
 ]);
 
 gameStorageApp.constant("AUTH_ROLES", {
-	HeadAdmin: 0,
-	Admin: 1,
-	User: 2
+	HEAD_ADMIN: 0,
+	ADMIN: 1,
+	USER: 2
 });
 
-gameStorageApp.run(function($rootScope, $window, authentication) {
+gameStorageApp.run(function($rootScope, $window, authentication, AUTH_ROLES) {
 	$rootScope.authentication = authentication;
+	$rootScope.AUTH_ROLES = AUTH_ROLES;
 
 	$rootScope.reloadPage = function() { window.location.reload(); }
 

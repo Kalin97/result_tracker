@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<div ng-show="authentication.isLoggedIn()">
+<div ng-show="authentication.isLoggedInAdmin()">
 	<div class="row" ng-show="ifActive(showAllFeedbacksPanel)">
 	    <div class="col-lg-12">
 			<table class="table table-bordered">
@@ -20,7 +20,7 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			  	<tr ng-repeat="feedback in feedbacks">
+			  	<tr ng-repeat="feedback in feedbacks | orderBy: 'id'">
 					<th>{{ feedback.id }}</th>
 					<td>{{ feedback.feedbackType }}</td>
 					<td>{{ feedback.feedbackStatus }}</td>
@@ -33,6 +33,13 @@
 	</div>
 
 	<div ng-show="ifActive(showFeedbackInfoPanel)">
+		<div class="row" style="padding-bottom: 10px;">
+			<div class="col-md">
+				<button class="btn btn-primary" ng-click="feedbackBackAction()">
+					<span class="glyphicon glyphicon-chevron-left"></span> Back
+				</button>
+			</div>
+		</div>
 		<div class="row" ng-show="alertBoxShow">
 			<div class="col-md-8">
 				<div class='alert alert-{{ alertBoxType }}' role='alert'>
@@ -87,7 +94,7 @@
 	</div>
 </div>
 
-<div ng-show="!authentication.isLoggedIn()">
+<div ng-show="authentication.isLoggedInWithRole(AUTH_ROLES.USER)">
 	<div class="row" ng-show="alertBoxShow">
 		<div class="col-md-8">
 			<div class='alert alert-{{ alertBoxType }}' role='alert'>

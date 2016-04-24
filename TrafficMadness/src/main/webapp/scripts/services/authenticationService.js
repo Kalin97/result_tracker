@@ -1,4 +1,4 @@
-gameStorageServices.factory('authentication', function($cookies, httpRest) {
+gameStorageServices.factory('authentication', function($cookies, httpRest, AUTH_ROLES) {
 	var userCookieKey = "userCookieKey";
 	var authenticationUrl = "api/v1/authentication/";
 
@@ -32,8 +32,12 @@ gameStorageServices.factory('authentication', function($cookies, httpRest) {
 			return this.user != null;
 		},
 
-		isHeadLoggedIn: function() {
-			return this.user != null && this.user.administratorType == "HEAD";
+		isLoggedInWithRole: function(role) {
+			return this.user != null && this.user.role == role;
+		},
+
+		isLoggedInAdmin: function() {
+			return this.user != null && this.user.role != AUTH_ROLES.USER;
 		}
 	}
 });
